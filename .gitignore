@@ -1,0 +1,3 @@
+dotfiles/fish/fishd.*
+*.code-workspace
+.mypy_cache/

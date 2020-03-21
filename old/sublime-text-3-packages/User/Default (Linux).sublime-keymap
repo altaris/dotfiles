@@ -1,0 +1,198 @@
+[
+
+// Basic
+
+	{ "keys": ["ctrl+shift+o"], "command": "prompt_open_folder" },
+	{ "keys": ["ctrl+shift+s"], "command": "save_all" },
+	{ "keys": ["ctrl+shift+w"], "command": "close_project" },
+
+// missing accented characters fix for ubuntu 14.10
+// Thanks https://stackoverflow.com/questions/27703981/cant-type-accented-characters-in-sublime-text-3-ubuntu-14-10
+
+    // a, [á, à, ã, â, å, ä]
+    { "keys": ["´","a"], "command": "insert", "args": {"characters": "á"}},
+    { "keys": ["`","a"], "command": "insert", "args": {"characters": "à"}},
+    { "keys": ["~","a"], "command": "insert", "args": {"characters": "ã"}},
+    { "keys": ["^","a"], "command": "insert", "args": {"characters": "â"}},
+    { "keys": ["°","a"], "command": "insert", "args": {"characters": "å"}},
+    { "keys": ["¨","a"], "command": "insert", "args": {"characters": "ä"}},
+    // A, [Á, À, Ã, Â, Å, Ä]
+    { "keys": ["´","A"], "command": "insert", "args": {"characters": "Á"}},
+    { "keys": ["`","A"], "command": "insert", "args": {"characters": "À"}},
+    { "keys": ["~","A"], "command": "insert", "args": {"characters": "Ã"}},
+    { "keys": ["^","A"], "command": "insert", "args": {"characters": "Â"}},
+    { "keys": ["°","A"], "command": "insert", "args": {"characters": "Å"}},
+    { "keys": ["¨","A"], "command": "insert", "args": {"characters": "Ä"}},
+    // e, [é, è, ê, ẽ, ë]
+    { "keys": ["´","e"], "command": "insert", "args": {"characters": "é"}},
+    { "keys": ["`","e"], "command": "insert", "args": {"characters": "è"}},
+    { "keys": ["^","e"], "command": "insert", "args": {"characters": "ê"}},
+    { "keys": ["~","e"], "command": "insert", "args": {"characters": "ẽ"}},
+    { "keys": ["¨","e"], "command": "insert", "args": {"characters": "ë"}},
+    // E, [É, È, Ê, Ẽ, Ë]
+    { "keys": ["´","E"], "command": "insert", "args": {"characters": "É"}},
+    { "keys": ["`","E"], "command": "insert", "args": {"characters": "È"}},
+    { "keys": ["^","E"], "command": "insert", "args": {"characters": "Ê"}},
+    { "keys": ["~","E"], "command": "insert", "args": {"characters": "Ẽ"}},
+    { "keys": ["¨","E"], "command": "insert", "args": {"characters": "Ë"}},
+    // i, [ì, í, ï]
+    { "keys": ["`","i"], "command": "insert", "args": {"characters": "ì"}},
+    { "keys": ["´","i"], "command": "insert", "args": {"characters": "í"}},
+    { "keys": ["¨","i"], "command": "insert", "args": {"characters": "ï"}},
+    // I, [Ì, Í, Ï]
+    { "keys": ["`","I"], "command": "insert", "args": {"characters": "Ì"}},
+    { "keys": ["´","I"], "command": "insert", "args": {"characters": "Í"}},
+    { "keys": ["¨","I"], "command": "insert", "args": {"characters": "Ï"}},
+    // o, [ó, õ, ô, ö]
+    { "keys": ["´","o"], "command": "insert", "args": {"characters": "ó"}},
+    { "keys": ["~","o"], "command": "insert", "args": {"characters": "õ"}},
+    { "keys": ["^","o"], "command": "insert", "args": {"characters": "ô"}},
+    { "keys": ["¨","o"], "command": "insert", "args": {"characters": "ö"}},
+    // O, [Ó, Õ, Ô, Ö]
+    { "keys": ["´","O"], "command": "insert", "args": {"characters": "Ó"}},
+    { "keys": ["~","O"], "command": "insert", "args": {"characters": "Õ"}},
+    { "keys": ["^","O"], "command": "insert", "args": {"characters": "Ô"}},
+    { "keys": ["¨","O"], "command": "insert", "args": {"characters": "Ö"}},
+    // u, [ú, ů, ü]
+    { "keys": ["´","u"], "command": "insert", "args": {"characters": "ú"}},
+    { "keys": ["°","u"], "command": "insert", "args": {"characters": "ů"}},
+    { "keys": ["¨","u"], "command": "insert", "args": {"characters": "ü"}},
+    // U, [Ú, Ů, Ü]
+    { "keys": ["´","U"], "command": "insert", "args": {"characters": "Ú"}},
+    { "keys": ["°","U"], "command": "insert", "args": {"characters": "Ů"}},
+    { "keys": ["¨","U"], "command": "insert", "args": {"characters": "Ü"}},
+    // y, [ý, ÿ]
+    { "keys": ["´","y"], "command": "insert", "args": {"characters": "ý"}},
+    { "keys": ["¨","y"], "command": "insert", "args": {"characters": "ÿ"}},
+    // Y, [Ý, Ÿ]
+    { "keys": ["´","Y"], "command": "insert", "args": {"characters": "Ý"}},
+    { "keys": ["¨","Y"], "command": "insert", "args": {"characters": "Ÿ"}},
+
+// Code folding
+
+	{ "keys": ["ctrl+k", "&"], "command": "fold_by_level", "args": {"level": 1} },
+	{ "keys": ["ctrl+k", "é"], "command": "fold_by_level", "args": {"level": 2} },
+	{ "keys": ["ctrl+k", "\""], "command": "fold_by_level", "args": {"level": 3} },
+	{ "keys": ["ctrl+k", "'"], "command": "fold_by_level", "args": {"level": 4} },
+	{ "keys": ["ctrl+k", "("], "command": "fold_by_level", "args": {"level": 5} },
+	{ "keys": ["ctrl+k", "-"], "command": "fold_by_level", "args": {"level": 6} },
+	{ "keys": ["ctrl+k", "è"], "command": "fold_by_level", "args": {"level": 7} },
+	{ "keys": ["ctrl+k", "_"], "command": "fold_by_level", "args": {"level": 8} },
+	{ "keys": ["ctrl+k", "ç"], "command": "fold_by_level", "args": {"level": 9} },
+	{ "keys": ["ctrl+k", "à"], "command": "unfold_all" },
+
+// Text editing
+
+	{ "keys": ["ctrl+r"], "command": "show_panel", "args": {"panel": "replace"} },
+	{ "keys": ["ctrl+shift+r"], "command": "replace_all" },
+	{ "keys": ["ctrl+shift+v"], "command": "clipboard_display" },
+
+// Layout : alt group
+
+	{ "keys": ["alt+m"], "command": "toggle_minimap" },
+	{ "keys": ["alt+d"], "command": "toggle_distraction_free" },
+	{ "keys": ["alt+s"], "command": "toggle_side_bar" },
+	{ "keys": ["alt+²"], "command": "focus_side_bar" },
+	{ "keys": ["alt+&"], "command": "focus_group", "args": { "group": 0 } },
+	{ "keys": ["alt+é"], "command": "focus_group", "args": { "group": 1 } },
+	{ "keys": ["alt+\""], "command": "focus_group", "args": { "group": 2 } },
+	{ "keys": ["alt+'"], "command": "focus_group", "args": { "group": 3 } },
+	{ "keys": ["ctrl+alt+&"], "command": "move_to_group", "args": { "group": 0 } },
+	{ "keys": ["ctrl+alt+é"], "command": "move_to_group", "args": { "group": 1 } },
+	{ "keys": ["ctrl+alt+\""], "command": "move_to_group", "args": { "group": 2 } },
+	{ "keys": ["ctrl+alt+'"], "command": "move_to_group", "args": { "group": 3 } },
+	{ "keys": ["ctrl+alt+("], "command": "move_to_group", "args": { "group": 4 } },
+	{ "keys": ["ctrl+alt+-"], "command": "move_to_group", "args": { "group": 5 } },
+	{ "keys": ["ctrl+alt+è"], "command": "move_to_group", "args": { "group": 6 } },
+	{ "keys": ["ctrl+alt+_"], "command": "move_to_group", "args": { "group": 7 } },
+	{ "keys": ["ctrl+alt+ç"], "command": "move_to_group", "args": { "group": 8 } },
+
+	{	// single
+		"keys": ["alt+shift+&"],
+		"command": "set_layout",
+		"args":
+		{
+			"cols": [0.0, 1.0],
+			"rows": [0.0, 1.0],
+			"cells": [[0, 0, 1, 1]]
+		}
+	},
+	{	// vsplit
+		"keys": ["alt+shift+é"],
+		"command": "set_layout",
+		"args":
+		{
+			"cols": [0.0, 0.5, 1.0],
+			"rows": [0.0, 1.0],
+			"cells": [[0, 0, 1, 1], [1, 0, 2, 1]]
+		}
+	},
+	{	// hsplit
+		"keys": ["alt+shift+\""],
+		"command": "set_layout",
+		"args":
+		{
+			"cols": [0.0, 1.0],
+			"rows": [0.0, 0.5, 1.0],
+			"cells": [[0, 0, 1, 1], [0, 1, 1, 2]]
+		}
+	},
+	{	// quad
+		"keys": ["alt+shift+'"],
+		"command": "set_layout",
+		"args":
+		{
+			"cols": [0.0, 0.5, 1.0],
+			"rows": [0.0, 0.5, 1.0],
+			"cells":
+			[
+				[0, 0, 1, 1], [1, 0, 2, 1],
+				[0, 1, 1, 2], [1, 1, 2, 2]
+			]
+		}
+	},
+	{	// vvsplit
+		"keys": ["alt+shift+("],
+		"command": "set_layout",
+		"args":
+		{
+			"cols": [0.0, 0.33, 0.66, 1.0],
+			"rows": [0.0, 1.0],
+			"cells": [[0, 0, 1, 1], [1, 0, 2, 1], [2, 0, 3, 1]]
+		}
+	},
+	{	// vvvsplit
+		"keys": ["alt+shift+-"],
+		"command": "set_layout",
+		"args":
+		{
+			"cols": [0.0, 0.25, 0.5, 0.75, 1.0],
+			"rows": [0.0, 1.0],
+			"cells": [[0, 0, 1, 1], [1, 0, 2, 1], [2, 0, 3, 1], [3, 0, 4, 1]]
+		}
+	},
+	{	// hhsplit
+		"keys": ["alt+shift+è"],
+		"command": "set_layout",
+		"args":
+		{
+			"cols": [0.0, 1.0],
+			"rows": [0.0, 0.33, 0.66, 1.0],
+			"cells": [[0, 0, 1, 1], [0, 1, 1, 2], [0, 2, 1, 3]]
+		}
+	},	
+
+// Navigation
+	{ "keys": ["ctrl+h"], "command": "switch_file", "args": {"extensions": ["cpp", "cxx", "cc", "c", "hpp", "hxx", "hh", "h", "ipp", "inl", "m", "mm"]} },
+	{ "keys": ["ctrl+space"], "command": "show_overlay", "args": {"overlay": "goto", "text": "@"} },
+//	{ "keys": ["ctrl+shift+space"], "command": "show_overlay", "args": {"overlay": "goto", "show_files": true} },
+	{ "keys": ["ctrl+shift+space"], "command": "goto_symbol_in_project" },
+	{ "keys": ["alt+enter"], "command": "show_overlay", "args": {"overlay": "command_palette"} },
+
+// Compile
+
+	{ "keys": ["ctrl+b"], "command": "build" },
+	{ "keys": ["ctrl+shift+b"], "command": "build", "args": {"variant": "Run"} },
+//	{ "keys": ["ctrl+shift+c"], "command": "build", "args": {"variant": "Clean"} }
+
+]

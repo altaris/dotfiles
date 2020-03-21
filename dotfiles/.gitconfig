@@ -1,0 +1,7 @@
+[alias]
+	uncommit = reset --soft HEAD^
+[user]
+	email = nope-mcnopeface@asdf.org
+	name = Cédric HT
+[push]
+	default = simple

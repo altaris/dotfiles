@@ -1,0 +1,245 @@
+stty -ixon
+
+eval $(dircolors ~/.ls_colors)
+
+# =============================================================================
+# apt
+# =============================================================================
+
+alias apta='sudo apt-get autoremove'
+alias apti='sudo apt-get install'
+alias aptr='sudo apt-get purge'
+alias aptu='sudo apt-get update'
+# alias aptU='sudo apt-get update && sudo apt-get dist-upgrade'
+alias pipi='python3 -m pip install --user --upgrade' # lolololol
+
+# search the apt-cache
+function apts () {
+    apt-cache search "$1" | grep -i --color "$1";
+}
+
+# =============================================================================
+# file navigation
+# =============================================================================
+
+if [ -x /usr/bin/dircolors ]; then
+    alias dir='dir --color=auto'
+    alias egrep='egrep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias grep='grep --color=auto'
+    alias ls='ls --color=auto'
+    alias vdir='vdir --color=auto'
+fi
+
+# alias ..='cd ..'
+# alias ...='cd ../..'
+# alias ....='cd ../../..'
+# alias .....='cd ../../../..'
+# alias ......='cd ../../../../..'
+alias ccat='bat --theme "Monokai Extended" --style changes,grid,numbers'
+alias cpr='cp -r'
+alias l='ls -CF'
+alias la='ls -A'
+alias ll='ls -alFh'
+alias rmr='rm -rf'
+
+# cd && l
+function cl () {
+    [ -d "$1" ] && cd "$1" && l
+}
+
+# cd && ll
+function cll () {
+    [ -d "$1" ] && cd "$1" && ll
+}
+
+# mkdir && cd
+function mkcd () {
+    mkdir -p "$1" && cd "$1"
+}
+
+# =============================================================================
+# git
+# =============================================================================
+
+alias gita='git add'
+# alias gitb='git branch'
+# alias gitB='git checkout -b'
+alias gitc='git commit -a -m'
+# alias gitca='git commit --amend'
+# alias gitC='git checkout'
+alias gitd='git diff'
+alias gitl="git log --pretty=format:'%C(yellow)%h%Creset %C(bold)%s%Creset \
+%C(blue)<%an>%Creset %Cred%D %Creset%Cgreen(%cr)%Creset' --graph"
+alias gitP='git push && git push origin --tags'
+alias gitp='git pull'
+alias gits='git status'
+# alias gitt='git tag'
+
+# =============================================================================
+# other
+# =============================================================================
+
+# Add an "alert" alias for long running commands. Use like:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i \
+    "$([ $? = 0 ] && echo terminal || echo error)" \
+    "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias C='clear && cd ~'
+alias c='clear'
+alias clip='xclip -sel clip'
+# alias emacs="emacs --no-window-system"
+alias ping8='ping 8.8.8.8'
+alias py='PYTHONSTARTUP=$HOME/bin/python-prompt.py python3.8'
+alias qpwgen='pwgen -Bcnsy -N 1 32'
+alias qsrm="shred -n 7 -u -v -z"
+alias s="sublime_text"
+alias tree="tree -a"
+alias ux='chmod u+x'
+
+function man () {
+  env \
+    LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+    LESS_TERMCAP_md=$(printf "\e[1;31m") \
+    LESS_TERMCAP_me=$(printf "\e[0m") \
+    LESS_TERMCAP_se=$(printf "\e[0m") \
+    LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+    LESS_TERMCAP_ue=$(printf "\e[0m") \
+    LESS_TERMCAP_us=$(printf "\e[1;32m") \
+    man "$@"
+}
+
+function mkbooklet () {
+    if [[ -z "$1" ]]; then
+        echo "Usage: $0 PDF_FILE [X1 [X2 [Y1 [Y2 [D]]]]]
+X1 : X coordinate of the bottom left corner of the crop box (default 110)
+Y1 : Y coordinate of the bottom left corner of the crop box (default 80)
+X2 : X coordinate of the top right corner of the crop box (default 490)
+Y2 : Y coordinate of the top right corner of the crop box (default 750)
+D  : Cental spacing in the booklet (default 60)"
+    elif [[ -f "$1" ]]; then
+        local TMPFILE="$(mktemp mkbooklet.tmp.XXXXXXXXXX.pdf)"
+        local X1=${2:-110}
+        local Y1=${3:-80}
+        local X2=${4:-490}
+        local Y2=${5:-750}
+        local D=${6:-60}
+        gs -o "$TMPFILE" -sDEVICE=pdfwrite -c "[/CropBox [$X1 $Y1 $X2 $Y2]" \
+            -c " /PAGES pdfmark" -f "$1"
+        pdfjam --booklet "true" --landscape --suffix "book" \
+            --delta "${D}mm 0mm" -- "$TMPFILE" -
+        rm "$TMPFILE"
+    else
+        echo "File \"$1\" doesn't exist or is not readable..."
+    fi
+}
+
+function arpscan () {
+    INTERFACE=${INTERFACE:-wlp2s0}
+    sudo arp-scan --interface=$INTERFACE --localnet
+}
+
+function setmac () {
+    INTERFACE=${INTERFACE:-wlp2s0}
+    if [[ -z "$1" ]]; then
+        echo "No MAC specified"
+    else
+        echo "Setting $INTERFACE MAC to $1"
+        sudo ifconfig $INTERFACE down
+        sudo ifconfig $INTERFACE hw ether "$1"
+        sudo ifconfig $INTERFACE up
+        echo "Done"
+    fi
+}
+
+function s3du () {
+    for i in $(s3cmd la | egrep "s3.*" -o); do
+        s3cmd du -H $i
+    done
+}
+
+# =============================================================================
+# specialized file operations
+# =============================================================================
+
+# build a source : build file.ext [flags]
+function build () {
+    if [[ -f $1 ]] ; then
+        local NOEXT=$(echo "$1" | sed -r "s/(.*)\\..*/\1/")
+        echo "$1 -> $NOEXT"
+        case $1 in
+            *.c)   gcc -Wall --std=c11   $2 "$1" -o "$NOEXT"            ;;
+            *.cpp) g++ -Wall --std=c++11 $2 "$1" -o "$NOEXT"            ;;
+            *.tex) xelatex -synctex=1 -interaction=nonstopmode $2 "$1"  ;;
+            *)     echo "$1 cannot be built via build"                  ;;
+        esac
+    else
+        echo "$1 is not a valid file"
+    fi
+}
+
+# uncompress an archive
+function extract () {
+    if [[ -f "$1" ]] ; then
+        case $1 in
+            *.tar.bz2) tar xjf $1                                ;;
+            *.tar.gz)  tar xzf $1                                ;;
+            *.bz2)     bunzip2 $1                                ;;
+            *.rar)     unrar e $1                                ;;
+            *.gz)      gunzip $1                                 ;;
+            *.tar)     tar xf $1                                 ;;
+            *.tbz2)    tar xjf $1                                ;;
+            *.tgz)     tar xzf $1                                ;;
+            *.zip)     unzip $1                                  ;;
+            *.Z)       uncompress $1                             ;;
+            *.7z)      p7zip -d $1                               ;;
+            *)         echo "$1 cannot be extracted via extract" ;;
+        esac
+     else
+        echo "$1 is not a valid file"
+     fi
+}
+
+# removes common trash files
+function rmtmp () {
+    # tex
+    rm -fv  ./**/*.aux           2> /dev/null
+    rm -fv  ./**/*.bbl           2> /dev/null
+    rm -fv  ./**/*.blg           2> /dev/null
+    rm -fv  ./**/*.idx           2> /dev/null
+    rm -fv  ./**/*.ilg           2> /dev/null
+    rm -fv  ./**/*.ind           2> /dev/null
+    rm -fv  ./**/*.log           2> /dev/null
+    rm -fv  ./**/*.out           2> /dev/null
+    rm -fv  ./**/*.synctex.gz    2> /dev/null
+    rm -fv  ./**/*.toc           2> /dev/null
+    rm -frv ./**/_minted*        2> /dev/null
+    # gluplot
+    rm -fv  ./**/*.*.gnuplot     2> /dev/null
+    rm -fv  ./**/*.*.table       2> /dev/null
+    # compilers
+    rm -fv  ./**/*.class         2> /dev/null
+    rm -fv  ./**/*.java~         2> /dev/null
+    rm -fv  ./**/*.o             2> /dev/null
+    # mac
+    rm -fv  ./**/*.DS_Store      2> /dev/null
+    rm -fv  ./**/._*             2> /dev/null
+    rm -frv ./**/.Trashes        2> /dev/null
+    rm -frv ./**/.Spotlight-V100 2> /dev/null
+}
+
+# =============================================================================
+# tmux
+# =============================================================================
+
+# alias tl='tmux list-session'
+# alias tk='tmux kill-session -t'
+
+# attaches or creates a tmux session
+# function ta () {
+#     tmux has-session -t "$1" 2> /dev/null
+#     if [ $? != 0 ]; then
+#         tmux -2 new-session -d -s "$1"
+#     fi
+#     tmux -2 attach -t "$1"
+# }

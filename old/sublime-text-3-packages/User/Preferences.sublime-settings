@@ -1,0 +1,25 @@
+{
+	"auto_complete": true,
+	"auto_complete_delay": 0,
+	"auto_complete_selector": "source, text",
+	"color_scheme": "Packages/sublime-monokai-extended/Monokai Extended Origin.tmTheme",
+	"detect_indentation": true,
+	"dictionary": "Packages/Language - French - Français/fr_FR.dic",
+	"fade_fold_buttons": false,
+	"font_size": 12,
+	"highlight_line": true,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"remember_open_files": false,
+	"rulers":
+	[
+		80
+	],
+	"tab_size": 4,
+	"theme": "Soda Dark.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"use_tab_stops": true,
+	"word_wrap": true
+}
