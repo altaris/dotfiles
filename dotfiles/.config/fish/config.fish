@@ -84,7 +84,7 @@ alias C='clear; cd ~'
 alias c='clear'
 alias clip='xclip -sel clip'
 alias ping8='ping 8.8.8.8'
-alias py='PYTHONSTARTUP=$HOME/bin/python-prompt.py python3.8'
+alias py='env PYTHONSTARTUP=$HOME/bin/python-prompt.py python3.8'
 alias qpwgen='pwgen -Bcnsy -N 1 32'
 alias qsrm="shred -n 7 -u -v -z"
 alias tree="tree -a"
