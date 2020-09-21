@@ -87,11 +87,12 @@
             "name": "latexmk",
             "command": "latexmk",
             "args": [
-                "-synctex=1",
-                "-interaction=nonstopmode",
                 "-file-line-error",
-                "-pdf",
+                "-interaction=nonstopmode",
                 "-outdir=%OUTDIR%",
+                "-pdf",
+                "-shell-escape",
+                "-synctex=1",
                 "%DOC%"
             ]
         },
@@ -107,11 +108,12 @@
             "name": "latexmk-xelatex",
             "command": "latexmk",
             "args": [
-                "-synctex=1",
-                "-interaction=nonstopmode",
                 "-file-line-error",
-                "-xelatex",
+                "-interaction=nonstopmode",
                 "-outdir=%OUTDIR%",
+                "-shell-escape",
+                "-synctex=1",
+                "-xelatex",
                 "%DOC%"
             ]
         },
@@ -331,7 +333,7 @@
     "editor.wordBasedSuggestions": false,
     "editor.suggestSelection": "recentlyUsedByPrefix",
     "files.simpleDialog.enable": true,
-    "workbench.iconTheme": "material-icon-theme",
+    "workbench.iconTheme": "eq-material-theme-icons",
     "rewrap.wrappingColumn": 79,
     "explorer.confirmDragAndDrop": false,
     "cSpell.diagnosticLevel": "Hint",
@@ -771,6 +773,7 @@
     "screencastMode.onlyKeyboardShortcuts": true,
     "cSpell.userWords": [
         "Bousfield",
+        "Injectivity",
         "acyclicity",
         "adjacencies",
         "arities",
@@ -797,8 +800,10 @@
         "cotensored",
         "exponentials",
         "fiberwise",
+        "finitary",
         "functorial",
         "functors",
+        "homotopical",
         "homotopies",
         "homotopy",
         "injective",
@@ -831,6 +836,7 @@
         "unitality"
     ],
     "terminal.integrated.shell.linux": "/usr/bin/fish",
+    "python.languageServer": "Microsoft",
     // "workbench.colorCustomizations": {
     //     // Modified solarized light, see
     //     // https://glitchbone.github.io/vscode-base16-term/#/solarized-light
