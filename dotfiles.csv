@@ -10,3 +10,4 @@
 "dotfiles/.config/Code/User/settings.json","~/.config/Code/User/settings.json"
 "dotfiles/.gitconfig","~/.gitconfig"
 "dotfiles/.config/fish","~/.config/fish"
+"dotfiles/.zshrc","~/.zshrc"
