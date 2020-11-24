@@ -7,6 +7,7 @@ import argparse
 import csv
 import logging
 import os
+from sys import platform
 
 
 def main():
@@ -44,10 +45,12 @@ def main():
     with open(args.index_file) as raw_index_file:
         for dotfile in csv.DictReader(raw_index_file):
             src = os.path.abspath(dotfile["src"])
-            tgt = os.path.expanduser(dotfile["tgt"])
+            if dotfile.get(platform) in ["", " ", "false", "FALSE", False]:
+                continue
+            tgt = os.path.expanduser(dotfile[platform])
             if not os.path.exists(src):
                 logging.error('Source file %s does not exist, skipping...', src)
-                break
+                continue
             if os.path.exists(tgt):
                 if os.path.islink(tgt):
                     logging.warning('Removing existing symlink %s', tgt)
@@ -58,8 +61,8 @@ def main():
                         'skipping...',
                         tgt
                     )
-                    break
-            logging.info('Linking %s -> %s', tgt, src)
+                    continue
+            logging.info('Linking %s (%s) -> %s', tgt, platform, src)
             os_makedirs(os.path.dirname(tgt), exist_ok=True)
             os_symlink(src, tgt)
 
