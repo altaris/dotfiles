@@ -41,6 +41,33 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "Change Command+Tab to Control+Tab",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "tab",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "tab",
+                                        "modifiers": [
+                                            "control"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
@@ -183,7 +210,7 @@
                 },
                 {
                     "from": {
-                        "key_code": "right_option"
+                        "key_code": "right_command"
                     },
                     "to": {
                         "key_code": "fn"
@@ -191,7 +218,7 @@
                 },
                 {
                     "from": {
-                        "key_code": "right_command"
+                        "key_code": "right_option"
                     },
                     "to": {
                         "key_code": "fn"
