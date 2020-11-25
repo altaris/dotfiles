@@ -1,6 +1,9 @@
 stty -ixon
 
-eval $(dircolors ~/.ls_colors)
+if [ "$(uname)" != "Darwin" ]; then
+    eval $(dircolors ~/.ls_colors)
+fi
+
 
 # =============================================================================
 # apt
@@ -154,7 +157,7 @@ function setmac () {
 }
 
 function s3du () {
-    for i in $(s3cmd la | egrep "s3.*" -o); do
+    for i in $(s3cmd la | grep -E "s3.*" -o); do
         s3cmd du -H $i
     done
 }
@@ -223,10 +226,12 @@ function rmtmp () {
     rm -fv  ./**/*.java~         2> /dev/null
     rm -fv  ./**/*.o             2> /dev/null
     # mac
-    rm -fv  ./**/*.DS_Store      2> /dev/null
-    rm -fv  ./**/._*             2> /dev/null
-    rm -frv ./**/.Trashes        2> /dev/null
-    rm -frv ./**/.Spotlight-V100 2> /dev/null
+    if [ "$(uname)" != "Darwin" ]; then
+        rm -fv  ./**/*.DS_Store      2> /dev/null
+        rm -fv  ./**/._*             2> /dev/null
+        rm -frv ./**/.Trashes        2> /dev/null
+        rm -frv ./**/.Spotlight-V100 2> /dev/null
+    fi
 }
 
 # =============================================================================
