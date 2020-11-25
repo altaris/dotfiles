@@ -87,3 +87,6 @@ PROMPT="┌─[%{$fg_bold[yellow]%}%n%{$reset_color%}@%{$fg_bold[red]%}%m\
 %{$reset_color%}]──[%{$fg_bold[blue]%}%~%{$reset_color%}]
 └──╼ "
 RPROMPT="%{$fg_no_bold[magenta]%}[%?]%{$reset_color%}"
+
+# FZF
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
