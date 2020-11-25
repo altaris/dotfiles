@@ -12,3 +12,4 @@ dotfiles/.config/Code/User/settings.json,~/.config/Code/User/settings.json,~/.co
 dotfiles/.gitconfig,~/.gitconfig,~/.gitconfig
 dotfiles/.config/fish,~/.config/fish,FALSE
 dotfiles/.config/karabiner/karabiner.json,FALSE,~/.config/karabiner/karabiner.json
+dotfiles/.zshrc,~/.zshrc,~/.zshrc
