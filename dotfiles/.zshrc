@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/cedric/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_DISABLE_COMPFIX="true"
 
@@ -10,7 +10,7 @@ ZSH_DISABLE_COMPFIX="true"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -71,7 +71,7 @@ HIST_STAMPS="yyyy/mm/dd"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=()
 
 source $ZSH/oh-my-zsh.sh
 
@@ -80,5 +80,10 @@ source $ZSH/oh-my-zsh.sh
 [ -f ~/.shell_global ] && . ~/.shell_global
 
 if [ "$(uname)" = "Darwin" ]; then
-    export PATH="$PATH:/Users/cedric/Library/Python/3.8/bin"
+    export PATH="$PATH:$HOME/Library/Python/3.8/bin"
 fi
+
+PROMPT="┌─[%{$fg_bold[yellow]%}%n%{$reset_color%}@%{$fg_bold[red]%}%m\
+%{$reset_color%}]──[%{$fg_bold[blue]%}%~%{$reset_color%}]
+└──╼ "
+RPROMPT="%{$fg_no_bold[magenta]%}[%?]%{$reset_color%}"
