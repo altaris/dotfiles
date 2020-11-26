@@ -299,7 +299,7 @@
     "telemetry.enableTelemetry": false,
     "window.restoreWindows": "none",
     "window.titleBarStyle": "custom",
-    "window.zoomLevel": 0,
+    "window.zoomLevel": 1,
     "workbench.startupEditor": "none",
     "code-runner.clearPreviousOutput": true,
     "code-runner.enableAppInsights": false,
@@ -313,7 +313,6 @@
     "git.showPushSuccessNotification": true,
     "scm.alwaysShowProviders": true,
     "comments.openPanel": "neverOpen",
-    "python.dataScience.allowLiveShare": false,
     "files.trimTrailingWhitespace": true,
     "files.trimFinalNewlines": true,
     "explorer.sortOrder": "type",
@@ -798,6 +797,7 @@
         "corestricts",
         "cotensor",
         "cotensored",
+        "epimorphism",
         "exponentials",
         "fiberwise",
         "finitary",
@@ -837,6 +837,17 @@
     ],
     "terminal.integrated.shell.linux": "/usr/bin/fish",
     "python.languageServer": "Microsoft",
+    "settingsSync.ignoredExtensions": [
+        "ms-azuretools.vscode-docker",
+        "skyapps.fish-vscode",
+        "james-yu.latex-workshop",
+        "ms-python.python",
+        "geequlim.godot-tools"
+    ],
+    "godot_tools.editor_path": "C:\\Program Files\\Godot\\Godot_v3.2.3-stable_win64.exe",
+    "latex-workshop.message.update.show": false,
+    "jupyter.allowLiveShare": false,
+    "workbench.list.multiSelectModifier": "alt",
     // "workbench.colorCustomizations": {
     //     // Modified solarized light, see
     //     // https://glitchbone.github.io/vscode-base16-term/#/solarized-light

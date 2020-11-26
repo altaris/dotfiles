@@ -7,8 +7,8 @@ dotfiles/.bashrc,~/.bashrc,FALSE
 dotfiles/.bash_logout,~/.bash_logout,FALSE
 dotfiles/.ls_colors,~/.ls_colors,FALSE
 dotfiles/.config/Code/User/keybindings.json,~/.config/Code/User/keybindings.json,FALSE
-dotfiles/.config/Code/User/keybindings.darwin.json,,~/.config/Code/User/keybindings.json
-dotfiles/.config/Code/User/settings.json,~/.config/Code/User/settings.json,~/.config/Code/User/settings.json
+dotfiles/.config/Code/User/keybindings.darwin.json,,~/Library/Application Support/Code/User/keybindings.json
+dotfiles/.config/Code/User/settings.json,~/.config/Code/User/settings.json,~/Library/Application Support/Code/User/settings.json
 dotfiles/.gitconfig,~/.gitconfig,~/.gitconfig
 dotfiles/.config/fish,~/.config/fish,FALSE
 dotfiles/.config/karabiner/karabiner.json,FALSE,~/.config/karabiner/karabiner.json
