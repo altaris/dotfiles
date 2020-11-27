@@ -860,11 +860,6 @@
         "when": "textInputFocus && !editorReadonly"
     },
     {
-        "key": "alt+left",
-        "command": "cursorLineStart",
-        "when": "textInputFocus"
-    },
-    {
         "key": "ctrl+a",
         "command": "-cursorLineStart",
         "when": "textInputFocus"
@@ -978,5 +973,5 @@
         "key": "alt+cmd+r",
         "command": "-toggleSearchRegex",
         "when": "searchViewletFocus"
-    }
+    },
 ]
