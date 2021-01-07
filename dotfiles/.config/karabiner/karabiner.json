@@ -761,7 +761,7 @@
                     "identifiers": {
                         "is_keyboard": true,
                         "is_pointing_device": false,
-                        "product_id": 635,
+                        "product_id": 638,
                         "vendor_id": 1452
                     },
                     "ignore": false,
