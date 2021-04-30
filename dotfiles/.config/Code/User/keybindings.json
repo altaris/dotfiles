@@ -1,5 +1,20 @@
-// Place your key bindings in this file to override the defaultsauto[]
 [
+
+// -----------------------------------------------------------------------------
+// General
+// -----------------------------------------------------------------------------
+
+
+    {
+        "key": "ctrl+shift+s",
+        "command": "workbench.action.files.saveAll"
+    },
+
+// -----------------------------------------------------------------------------
+// Views
+// -----------------------------------------------------------------------------
+
+// Editor layouts
 
     {
         "key": "alt+s 1",
@@ -25,11 +40,14 @@
         "key": "alt+s s",
         "command": "workbench.action.toggleSidebarVisibility"
     },
-    {
-        "key": "ctrl+b",
-        "command": "latex-workshop.recipes",
-        "when": "editorTextFocus && editorLangId == 'latex'"
-    },
+
+
+// -----------------------------------------------------------------------------
+// Editor
+// -----------------------------------------------------------------------------
+
+// Folds
+
     {
         "key": "alt+e 1",
         "command": "editor.foldLevel1",
@@ -75,11 +93,9 @@
         "command": "editor.unfoldAll",
         "when": "editorTextFocus"
     },
-    {
-        "key": "ctrl+shift+s",
-        "command": "workbench.action.files.saveAll"
-    },
 
+// -----------------------------------------------------------------------------
+// LaTeX Workshop
 // -----------------------------------------------------------------------------
 
     {
@@ -95,16 +111,6 @@
     {
         "key": "ctrl+b",
         "command": "-workbench.action.toggleSidebarVisibility"
-    },
-    {
-        "key": "alt+enter",
-        "command": "-debug.openBreakpointToSide",
-        "when": "breakpointsFocused"
-    },
-    {
-        "key": "alt+enter",
-        "command": "-editor.action.selectAllMatches",
-        "when": "editorFocus && findWidgetVisible"
     },
     {
         "key": "ctrl+k ctrl+1",
@@ -633,4 +639,27 @@
         "command": "-latex-workshop.synctex",
         "when": "editorTextFocus && !config.latex-workshop.bind.altKeymap.enabled && editorLangId == 'latex'"
     },
+    {
+        "key": "ctrl+b",
+        "command": "latex-workshop.recipes",
+        "when": "editorTextFocus && editorLangId == 'latex'"
+    },
+
+
+// -----------------------------------------------------------------------------
+// Disabled
+// -----------------------------------------------------------------------------
+
+
+    {
+        "key": "alt+enter",
+        "command": "-debug.openBreakpointToSide",
+        "when": "breakpointsFocused"
+    },
+    {
+        "key": "alt+enter",
+        "command": "-editor.action.selectAllMatches",
+        "when": "editorFocus && findWidgetVisible"
+    },
+
 ]

@@ -1,11 +1,5 @@
 {
     "breadcrumbs.enabled": true,
-    "C_Cpp.default.cppStandard": "c++11",
-    "C_Cpp.default.cStandard": "c11",
-    "code-runner.executorMap": {
-        "c": "cd $dir && gcc \"$fileName\" -o \"$fileNameWithoutExt\" && \"./$fileNameWithoutExt\"",
-        "python": "python3"
-    },
     "editor.accessibilitySupport": "off",
     "editor.rulers": [80],
     "editor.showFoldingControls": "always",
@@ -101,7 +95,7 @@
             "command": "latexmk",
             "args": [
                 "-outdir=%OUTDIR%",
-                "-C"
+                "-c"
             ]
         },
         {
@@ -299,7 +293,7 @@
     "telemetry.enableTelemetry": false,
     "window.restoreWindows": "none",
     "window.titleBarStyle": "custom",
-    "window.zoomLevel": 0,
+    "window.zoomLevel": 1,
     "workbench.startupEditor": "none",
     "code-runner.clearPreviousOutput": true,
     "code-runner.enableAppInsights": false,
@@ -313,7 +307,6 @@
     "git.showPushSuccessNotification": true,
     "scm.alwaysShowProviders": true,
     "comments.openPanel": "neverOpen",
-    "python.dataScience.allowLiveShare": false,
     "files.trimTrailingWhitespace": true,
     "files.trimFinalNewlines": true,
     "explorer.sortOrder": "type",
@@ -759,13 +752,12 @@
         ".latexmkrc": "perl",
         "*.env.template": "shellscript",
         "*.env": "shellscript",
-        "*.tikz": "tex",
+        "*.tikz": "latex",
         "pylintrc": "ini",
         "requirements.*.txt": "pip-requirements"
     },
     "editor.minimap.showSlider": "always",
     "workbench.activityBar.visible": false,
-    "workbench.colorTheme": "Solarized Light",
     "workbench.preferredDarkColorTheme": "Solarized Dark",
     "workbench.preferredLightColorTheme": "Solarized Light",
     "workbench.tips.enabled": false,
@@ -774,6 +766,7 @@
     "cSpell.userWords": [
         "Bousfield",
         "Injectivity",
+        "Riemannian",
         "acyclicity",
         "adjacencies",
         "arities",
@@ -798,6 +791,9 @@
         "corestricts",
         "cotensor",
         "cotensored",
+        "differomorphic",
+        "differomorphism",
+        "epimorphism",
         "exponentials",
         "fiberwise",
         "finitary",
@@ -837,6 +833,31 @@
     ],
     "terminal.integrated.shell.linux": "/usr/bin/fish",
     "python.languageServer": "Microsoft",
+    "settingsSync.ignoredExtensions": [
+        "ms-azuretools.vscode-docker",
+        "skyapps.fish-vscode",
+        "james-yu.latex-workshop",
+        "ms-python.python",
+        "geequlim.godot-tools"
+    ],
+    "godot_tools.editor_path": "C:\\Program Files\\Godot\\Godot_v3.2.3-stable_win64.exe",
+    "latex-workshop.message.update.show": false,
+    "jupyter.allowLiveShare": false,
+    "workbench.list.multiSelectModifier": "alt",
+    "editor.minimap.enabled": false,
+    "workbench.editor.wrapTabs": true,
+    "workbench.colorTheme": "Solarized Light",
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ],
+    "cSpell.enabled": false,
+    "jupyter.textOutputLimit": 0,
+    "jupyter.interactiveWindowMode": "perFile",
+    "search.useGlobalIgnoreFiles": true,
+    "jupyter.askForKernelRestart": false,
     // "workbench.colorCustomizations": {
     //     // Modified solarized light, see
     //     // https://glitchbone.github.io/vscode-base16-term/#/solarized-light
