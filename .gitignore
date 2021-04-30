@@ -1,3 +1,4 @@
 dotfiles/fish/fishd.*
 *.code-workspace
 .mypy_cache/
+.DS_Store
