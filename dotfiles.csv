@@ -10,6 +10,5 @@ dotfiles/.config/Code/User/keybindings.json,~/.config/Code/User/keybindings.json
 dotfiles/.config/Code/User/keybindings.darwin.json,,~/Library/Application Support/Code/User/keybindings.json
 dotfiles/.config/Code/User/settings.json,~/.config/Code/User/settings.json,~/Library/Application Support/Code/User/settings.json
 dotfiles/.gitconfig,~/.gitconfig,~/.gitconfig
-dotfiles/.config/fish,~/.config/fish,FALSE
 dotfiles/.config/karabiner/karabiner.json,FALSE,~/.config/karabiner/karabiner.json
 dotfiles/.zshrc,~/.zshrc,~/.zshrc

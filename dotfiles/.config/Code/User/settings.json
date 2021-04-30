@@ -745,7 +745,7 @@
         "**/venv": true,
     },
     "sequence.replaceSelection": true,
-    "terminal.external.linuxExec": "",
+    "terminal.external.linuxExec": "/usr/bin/zsh",
     "editor.fontFamily": "'JetBrains Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.fontLigatures": true,
     "files.associations": {
@@ -831,7 +831,6 @@
         "unital",
         "unitality"
     ],
-    "terminal.integrated.shell.linux": "/usr/bin/fish",
     "python.languageServer": "Microsoft",
     "settingsSync.ignoredExtensions": [
         "ms-azuretools.vscode-docker",
@@ -840,8 +839,6 @@
         "ms-python.python",
         "geequlim.godot-tools"
     ],
-    "godot_tools.editor_path": "C:\\Program Files\\Godot\\Godot_v3.2.3-stable_win64.exe",
-    "latex-workshop.message.update.show": false,
     "jupyter.allowLiveShare": false,
     "workbench.list.multiSelectModifier": "alt",
     "editor.minimap.enabled": false,
@@ -857,29 +854,4 @@
     "jupyter.textOutputLimit": 0,
     "jupyter.interactiveWindowMode": "perFile",
     "search.useGlobalIgnoreFiles": true,
-    "jupyter.askForKernelRestart": false,
-    // "workbench.colorCustomizations": {
-    //     // Modified solarized light, see
-    //     // https://glitchbone.github.io/vscode-base16-term/#/solarized-light
-    //     "terminal.background":"#FDF6E3",
-    //     "terminal.foreground":"#586E75",
-    //     "terminalCursor.background":"#586E75",
-    //     "terminalCursor.foreground":"#586E75",
-    //     "terminal.ansiBlack":"#FDF6E3",
-    //     "terminal.ansiBlue":"#268BD2",
-    //     "terminal.ansiBrightBlack":"#839496",
-    //     "terminal.ansiBrightBlue":"#268BD2",
-    //     "terminal.ansiBrightCyan":"#2AA198",
-    //     "terminal.ansiBrightGreen":"#23cf00",
-    //     "terminal.ansiBrightMagenta":"#6C71C4",
-    //     "terminal.ansiBrightRed":"#DC322F",
-    //     "terminal.ansiBrightWhite":"#002B36",
-    //     "terminal.ansiBrightYellow":"#B58900",
-    //     "terminal.ansiCyan":"#2AA198",
-    //     "terminal.ansiGreen":"#859900",
-    //     "terminal.ansiMagenta":"#6C71C4",
-    //     "terminal.ansiRed":"#DC322F",
-    //     "terminal.ansiWhite":"#586E75",
-    //     "terminal.ansiYellow":"#B58900"
-    // }
 }
