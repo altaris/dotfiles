@@ -29,6 +29,8 @@ install:
 	@echo "============================================================"
 	@echo
 	-sh -c "$$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+install-fzf:
 	@echo
 	@echo "============================================================"
 	@echo "Installing fzf"

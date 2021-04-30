@@ -1,6 +1,5 @@
 // Place your key bindings in this file to override the defaultsauto[]
 [
-
     {
         "key": "alt+s 1",
         "command": "workbench.action.editorLayoutSingle"
@@ -186,14 +185,6 @@
         "when": "editorTextFocus && !editorReadonly"
     },
     {
-        "key": "cmd+[IntlBackslash]",
-        "command": "editor.action.jumpToBracket"
-    },
-    {
-        "key": "cmd+shift+[IntlBackslash]",
-        "command": "editor.action.selectToBracket"
-    },
-    {
         "key": "cmd+shift+[IntlBackslash]",
         "command": "-breadcrumbs.focusAndSelect",
         "when": "breadcrumbsPossible"
@@ -284,16 +275,8 @@
         "command": "-workbench.action.focusBelowGroup"
     },
     {
-        "key": "alt+left",
-        "command": "workbench.action.focusLeftGroup"
-    },
-    {
         "key": "cmd+k cmd+left",
         "command": "-workbench.action.focusLeftGroup"
-    },
-    {
-        "key": "alt+right",
-        "command": "workbench.action.focusRightGroup"
     },
     {
         "key": "cmd+k cmd+right",
@@ -923,5 +906,33 @@
         "key": "cmd+delete",
         "command": "deleteWordRight",
         "when": "textInputFocus && !editorReadonly"
+    },
+    {
+        "key": "cmd+[Period]",
+        "command": "-breadcrumbs.focus",
+        "when": "breadcrumbsPossible"
+    },
+    {
+        "key": "cmd+[Period]",
+        "command": "editor.action.smartSelect.expand",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+[Slash]",
+        "command": "editor.action.smartSelect.shrink",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+[Minus]",
+        "command": "editor.action.jumpToBracket",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+left",
+        "command": "-breadcrumbs.focusPrevious"
+    },
+    {
+        "key": "alt+left",
+        "command": "-breadcrumbs.focusPreviousWithPicker"
     },
 ]
