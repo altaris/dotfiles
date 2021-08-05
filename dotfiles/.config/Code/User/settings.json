@@ -316,7 +316,7 @@
     "shellcheck.disableVersionCheck": true,
     "python.analysis.logLevel": "Warning",
     "python.autoComplete.addBrackets": true,
-    "python.formatting.provider": "autopep8",
+    "python.formatting.provider": "black",
     "python.linting.pycodestyleEnabled": false,
     "python.linting.pylintEnabled": true,
     "python.linting.pylintArgs": [
@@ -326,7 +326,6 @@
     "editor.wordBasedSuggestions": false,
     "editor.suggestSelection": "recentlyUsedByPrefix",
     "files.simpleDialog.enable": true,
-    "workbench.iconTheme": "eq-material-theme-icons",
     "rewrap.wrappingColumn": 79,
     "explorer.confirmDragAndDrop": false,
     "cSpell.diagnosticLevel": "Hint",
@@ -745,7 +744,7 @@
         "**/venv": true,
     },
     "sequence.replaceSelection": true,
-    "terminal.external.linuxExec": "",
+    "terminal.external.linuxExec": "/usr/bin/zsh",
     "editor.fontFamily": "'JetBrains Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.fontLigatures": true,
     "files.associations": {
@@ -831,55 +830,49 @@
         "unital",
         "unitality"
     ],
-    "terminal.integrated.shell.linux": "/usr/bin/fish",
-    "python.languageServer": "Microsoft",
+    "python.languageServer": "Pylance",
     "settingsSync.ignoredExtensions": [
-        "ms-azuretools.vscode-docker",
         "skyapps.fish-vscode",
         "james-yu.latex-workshop",
         "ms-python.python",
         "geequlim.godot-tools"
     ],
-    "godot_tools.editor_path": "C:\\Program Files\\Godot\\Godot_v3.2.3-stable_win64.exe",
-    "latex-workshop.message.update.show": false,
     "jupyter.allowLiveShare": false,
     "workbench.list.multiSelectModifier": "alt",
-    "editor.minimap.enabled": false,
-    "workbench.editor.wrapTabs": true,
-    "workbench.colorTheme": "Solarized Light",
-    "workbench.editorAssociations": [
-        {
-            "viewType": "jupyter.notebook.ipynb",
-            "filenamePattern": "*.ipynb"
-        }
-    ],
+    "workbench.editorAssociations": {
+        "*.model": "default",
+        "*.ipynb": "jupyter-notebook"
+    },
     "cSpell.enabled": false,
     "jupyter.textOutputLimit": 0,
     "jupyter.interactiveWindowMode": "perFile",
     "search.useGlobalIgnoreFiles": true,
+    "terminal.integrated.tabs.enabled": true,
+    "terminal.integrated.defaultProfile.osx": "zsh",
     "jupyter.askForKernelRestart": false,
-    // "workbench.colorCustomizations": {
-    //     // Modified solarized light, see
-    //     // https://glitchbone.github.io/vscode-base16-term/#/solarized-light
-    //     "terminal.background":"#FDF6E3",
-    //     "terminal.foreground":"#586E75",
-    //     "terminalCursor.background":"#586E75",
-    //     "terminalCursor.foreground":"#586E75",
-    //     "terminal.ansiBlack":"#FDF6E3",
-    //     "terminal.ansiBlue":"#268BD2",
-    //     "terminal.ansiBrightBlack":"#839496",
-    //     "terminal.ansiBrightBlue":"#268BD2",
-    //     "terminal.ansiBrightCyan":"#2AA198",
-    //     "terminal.ansiBrightGreen":"#23cf00",
-    //     "terminal.ansiBrightMagenta":"#6C71C4",
-    //     "terminal.ansiBrightRed":"#DC322F",
-    //     "terminal.ansiBrightWhite":"#002B36",
-    //     "terminal.ansiBrightYellow":"#B58900",
-    //     "terminal.ansiCyan":"#2AA198",
-    //     "terminal.ansiGreen":"#859900",
-    //     "terminal.ansiMagenta":"#6C71C4",
-    //     "terminal.ansiRed":"#DC322F",
-    //     "terminal.ansiWhite":"#586E75",
-    //     "terminal.ansiYellow":"#B58900"
-    // }
+    "python.analysis.completeFunctionParens": true,
+    "workbench.colorTheme": "Atom One Light",
+    "python.showStartPage": false,
+    "python.analysis.autoImportCompletions": false,
+    "notebook.outline.showCodeCells": true,
+    "editor.minimap.enabled": false,
+    "security.workspace.trust.untrustedFiles": "open",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "gitlens.hovers.currentLine.over": "line",
+    "gitlens.defaultDateFormat": null,
+    "gitlens.currentLine.enabled": false,
+    "gitlens.codeLens.enabled": false,
+    "gitlens.statusBar.enabled": false,
+    "go.buildOnSave": "off",
+    "go.toolsManagement.autoUpdate": true,
+    "go.vetOnSave": "off",
+    "go.lintOnSave": "off",
+    "go.formatOnSave": "off",
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
 }

@@ -227,10 +227,6 @@
         "command": "-workbench.view.explorer"
     },
     {
-        "key": "alt+s g",
-        "command": "workbench.view.scm"
-    },
-    {
         "key": "cmd+shift+g",
         "command": "-workbench.view.scm"
     },
@@ -935,4 +931,22 @@
         "key": "alt+left",
         "command": "-breadcrumbs.focusPreviousWithPicker"
     },
+    {
+        "key": "alt+s h",
+        "command": "workbench.view.extension.gitlens"
+    },
+    {
+        "key": "alt+s g",
+        "command": "workbench.view.scm",
+        "when": "workbench.scm.active"
+    },
+    {
+        "key": "ctrl+shift+g",
+        "command": "-workbench.view.scm",
+        "when": "workbench.scm.active"
+    },
+    {
+        "key": "alt+s d",
+        "command": "workbench.view.debug"
+    }
 ]
