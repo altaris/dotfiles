@@ -29,8 +29,14 @@ install:
 	@echo "============================================================"
 	@echo
 	-sh -c "$$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-install-fzf:
+	@echo
+	@echo "============================================================"
+	@echo "Installing oh-my-zsh plugins"
+	@echo "============================================================"
+	@echo
+	-mkdir -p ~/.oh-my-zsh/custom/plugins/
+	-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+	-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 	@echo
 	@echo "============================================================"
 	@echo "Installing fzf"
