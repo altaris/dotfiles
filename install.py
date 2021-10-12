@@ -30,6 +30,12 @@ def main():
         default='./dotfiles.csv',
         help='CSV file indexing the dotfiles.'
     )
+    parser.add_argument(
+        '-f', '--force',
+        action='store',
+        default=False,
+        help='Forcefully overwrites dotfiles, even when they are not symlinks.'
+    )
     args = parser.parse_args()
 
     if args.dry_run:
@@ -54,6 +60,9 @@ def main():
             if os.path.exists(tgt):
                 if os.path.islink(tgt):
                     logging.warning('Removing existing symlink %s', tgt)
+                    os_remove(tgt)
+                elif args.force:
+                    logging.warning('Forcefully removing existing dotfile %s', tgt)
                     os_remove(tgt)
                 else:
                     logging.error(
