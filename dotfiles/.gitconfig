@@ -1,7 +1,7 @@
 [alias]
 	uncommit = reset --soft HEAD^
 [user]
-	email = nope-mcnopeface@asdf.org
+	email = altaris@users.noreply.github.com
 	name = Cédric HT
 [push]
 	default = simple
