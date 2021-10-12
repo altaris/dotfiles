@@ -833,7 +833,6 @@
     "python.languageServer": "Pylance",
     "settingsSync.ignoredExtensions": [
         "skyapps.fish-vscode",
-        "james-yu.latex-workshop",
         "ms-python.python",
         "geequlim.godot-tools"
     ],
@@ -841,9 +840,9 @@
     "workbench.list.multiSelectModifier": "alt",
     "workbench.editorAssociations": {
         "*.model": "default",
-        "*.ipynb": "jupyter-notebook"
+        "*.ipynb": "jupyter-notebook",
+        "git-rebase-todo": "gitlens.rebase"
     },
-    "cSpell.enabled": false,
     "jupyter.textOutputLimit": 0,
     "jupyter.interactiveWindowMode": "perFile",
     "search.useGlobalIgnoreFiles": true,
@@ -874,5 +873,19 @@
     "notebook.cellToolbarLocation": {
         "default": "right",
         "jupyter-notebook": "left"
-    }
+    },
+    "latex-workshop.view.outline.floats.enabled": false,
+    "latex-workshop.view.outline.labels.enabled": false,
+    "latex-workshop.view.outline.sections": [
+        "part",
+        "chapter",
+        "section",
+        "subsection",
+        "subsubsection",
+        "paragraph"
+    ],
+    "git.confirmSync": false,
+    "cSpell.allowCompoundWords": true,
+    "cSpell.language": "en,fr",
+    "cSpell.logLevel": "Warning"
 }
