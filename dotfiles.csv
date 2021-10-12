@@ -12,3 +12,4 @@ dotfiles/.config/Code/User/settings.json,~/.config/Code/User/settings.json,~/Lib
 dotfiles/.gitconfig,~/.gitconfig,~/.gitconfig
 dotfiles/.config/karabiner/karabiner.json,FALSE,~/.config/karabiner/karabiner.json
 dotfiles/.zshrc,~/.zshrc,~/.zshrc
+dotfiles/.tmux.conf,~/.tmux.conf,~/.tmux.conf
