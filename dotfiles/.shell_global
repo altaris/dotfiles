@@ -207,30 +207,36 @@ function extract () {
 # removes common trash files
 function rmtmp () {
     # tex
-    rm -fv  ./**/*.aux           2> /dev/null
-    rm -fv  ./**/*.bbl           2> /dev/null
-    rm -fv  ./**/*.blg           2> /dev/null
-    rm -fv  ./**/*.idx           2> /dev/null
-    rm -fv  ./**/*.ilg           2> /dev/null
-    rm -fv  ./**/*.ind           2> /dev/null
-    rm -fv  ./**/*.log           2> /dev/null
-    rm -fv  ./**/*.out           2> /dev/null
-    rm -fv  ./**/*.synctex.gz    2> /dev/null
-    rm -fv  ./**/*.toc           2> /dev/null
-    rm -frv ./**/_minted*        2> /dev/null
+    find . -type d -name "_minted*"         -print -delete
+    find . -type f -name "*.aux"            -print -delete
+    find . -type f -name "*.bbl"            -print -delete
+    find . -type f -name "*.blg"            -print -delete
+    find . -type f -name "*.idx"            -print -delete
+    find . -type f -name "*.ilg"            -print -delete
+    find . -type f -name "*.ind"            -print -delete
+    find . -type f -name "*.log"            -print -delete
+    find . -type f -name "*.out"            -print -delete
+    find . -type f -name "*.synctex.gz"     -print -delete
+    find . -type f -name "*.synctex(busy)"  -print -delete
+    find . -type f -name "*.toc"            -print -delete
+    find . -type f -name "*.fdb_latexmk"    -print -delete
+    find . -type f -name "*.fls"            -print -delete
+    find . -type f -name "*.nav"            -print -delete
+    find . -type f -name "*.snm"            -print -delete
+    find . -type f -name "*.xdv"            -print -delete
     # gluplot
-    rm -fv  ./**/*.*.gnuplot     2> /dev/null
-    rm -fv  ./**/*.*.table       2> /dev/null
+    find . -type f -name "*.*.gnuplot"      -print -delete
+    find . -type f -name "*.*.table"        -print -delete
     # compilers
-    rm -fv  ./**/*.class         2> /dev/null
-    rm -fv  ./**/*.java~         2> /dev/null
-    rm -fv  ./**/*.o             2> /dev/null
+    find . -type f -name "*.class"          -print -delete
+    find . -type f -name "*.java~"          -print -delete
+    find . -type f -name "*.o"              -print -delete
     # mac
     if [ "$(uname)" != "Darwin" ]; then
-        rm -fv  ./**/*.DS_Store      2> /dev/null
-        rm -fv  ./**/._*             2> /dev/null
-        rm -frv ./**/.Trashes        2> /dev/null
-        rm -frv ./**/.Spotlight-V100 2> /dev/null
+        find . -type d -name ".Spotlight-V100"  -print -delete
+        find . -type d -name ".Trashes"         -print -delete
+        find . -type f -name "._*"              -print -delete
+        find . -type f -name "*.DS_Store"       -print -delete
     fi
 }
 
