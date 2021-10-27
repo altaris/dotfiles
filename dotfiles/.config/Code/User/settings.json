@@ -289,8 +289,6 @@
     "latex-workshop.view.pdf.viewer": "tab",
     "latex-workshop.view.pdf.zoom": "page-width",
     "rewrap.autoWrap.enabled": true,
-    "telemetry.enableCrashReporter": false,
-    "telemetry.enableTelemetry": false,
     "window.restoreWindows": "none",
     "window.titleBarStyle": "custom",
     "window.zoomLevel": 1,
@@ -836,14 +834,12 @@
         "ms-python.python",
         "geequlim.godot-tools"
     ],
-    "jupyter.allowLiveShare": false,
     "workbench.list.multiSelectModifier": "alt",
     "workbench.editorAssociations": {
         "*.model": "default",
         "*.ipynb": "jupyter-notebook",
         "git-rebase-todo": "gitlens.rebase"
     },
-    "jupyter.textOutputLimit": 0,
     "jupyter.interactiveWindowMode": "perFile",
     "search.useGlobalIgnoreFiles": true,
     "terminal.integrated.tabs.enabled": true,
@@ -887,5 +883,6 @@
     "git.confirmSync": false,
     "cSpell.allowCompoundWords": true,
     "cSpell.language": "en,fr",
-    "cSpell.logLevel": "Warning"
+    "cSpell.logLevel": "Warning",
+    "telemetry.telemetryLevel": "off"
 }
