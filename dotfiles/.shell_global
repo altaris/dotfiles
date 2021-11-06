@@ -9,12 +9,12 @@ fi
 # apt
 # =============================================================================
 
-alias apta='sudo apt-get autoremove'
-alias apti='sudo apt-get install'
-alias aptr='sudo apt-get purge'
-alias aptu='sudo apt-get update'
-# alias aptU='sudo apt-get update && sudo apt-get dist-upgrade'
-alias pipi='python3 -m pip install --user --upgrade' # lolololol
+alias apta="sudo apt-get autoremove"
+alias apti="sudo apt-get install"
+alias aptr="sudo apt-get purge"
+alias aptu="sudo apt-get update"
+# alias aptU="sudo apt-get update && sudo apt-get dist-upgrade"
+alias pipi="python3 -m pip install --user --upgrade" # lolololol
 
 # search the apt-cache
 function apts () {
@@ -26,25 +26,25 @@ function apts () {
 # =============================================================================
 
 if [ -x /usr/bin/dircolors ]; then
-    alias dir='dir --color=auto'
-    alias egrep='egrep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias grep='grep --color=auto'
-    alias ls='ls --color=auto'
-    alias vdir='vdir --color=auto'
+    alias dir="dir --color=auto"
+    alias egrep="egrep --color=auto"
+    alias fgrep="fgrep --color=auto"
+    alias grep="grep --color=auto"
+    alias ls="ls --color=auto"
+    alias vdir="vdir --color=auto"
 fi
 
-# alias ..='cd ..'
-# alias ...='cd ../..'
-# alias ....='cd ../../..'
-# alias .....='cd ../../../..'
-# alias ......='cd ../../../../..'
-alias ccat='bat --theme "Monokai Extended" --style changes,grid,numbers'
-alias cpr='cp -r'
-alias l='ls -CF'
-alias la='ls -A'
-alias ll='ls -alFh'
-alias rmr='rm -rf'
+# alias ..="cd .."
+# alias ...="cd ../.."
+# alias ....="cd ../../.."
+# alias .....="cd ../../../.."
+# alias ......="cd ../../../../.."
+alias ccat="bat --theme "Monokai Extended" --style changes,grid,numbers"
+alias cpr="cp -r"
+alias l="ls -CF"
+alias la="ls -A"
+alias ll="ls -alFh"
+alias rmr="rm -rf"
 
 # cd && l
 function cl () {
@@ -65,19 +65,18 @@ function mkcd () {
 # git
 # =============================================================================
 
-alias gita='git add'
-# alias gitb='git branch'
-# alias gitB='git checkout -b'
-alias gitc='git commit -a -m'
-# alias gitca='git commit --amend'
-# alias gitC='git checkout'
-alias gitd='git diff'
-alias gitl="git log --pretty=format:'%C(yellow)%h%Creset %C(bold)%s%Creset \
-%C(blue)<%an>%Creset %Cred%D %Creset%Cgreen(%cr)%Creset' --graph"
-alias gitP='git push && git push origin --tags'
-alias gitp='git pull'
-alias gits='git status'
-# alias gitt='git tag'
+alias gita="git add"
+# alias gitb="git branch"
+# alias gitB="git checkout -b"
+alias gitc="git commit -a -m"
+# alias gitca="git commit --amend"
+# alias gitC="git checkout"
+alias gitd="git diff"
+alias gitl="git log --pretty=format:'%C(yellow)%h%Creset %C(bold)%s%Creset %C(blue)<%an>%Creset %Cred%D %Creset%Cgreen(%cr)%Creset' --graph"
+alias gitP="git push && git push origin --tags"
+alias gitp="git pull"
+alias gits="git status"
+# alias gitt="git tag"
 
 # =============================================================================
 # other
@@ -85,21 +84,18 @@ alias gits='git status'
 
 # Add an "alert" alias for long running commands. Use like:
 #   sleep 10; alert
-alias alert='notify-send --urgency=low -i \
-    "$([ $? = 0 ] && echo terminal || echo error)" \
-    "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-alias C='clear && cd ~'
-alias c='clear'
-alias clip='xclip -sel clip'
-# alias emacs="emacs --no-window-system"
-alias ping8='ping 8.8.8.8'
-# alias py='PYTHONSTARTUP=$HOME/bin/python-prompt.py python3.8'
-alias py='python3.8'
-alias qpwgen='pwgen -Bcnsy -N 1 32'
+# alias alert='notify-send --urgency=low -i \
+#     "$([ $? = 0 ] && echo terminal || echo error)" \
+#     "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias C="clear && cd ~"
+alias c="clear"
+alias clip="xclip -sel clip"
+alias ping8="ping 8.8.8.8"
+alias py="python3.8"
+alias qpwgen="pwgen -Bcnsy -N 1 32"
 alias qsrm="shred -n 7 -u -v -z"
-alias s="sublime_text"
 alias tree="tree -a"
-alias ux='chmod u+x'
+alias ux="chmod u+x"
 
 function man () {
   env \
@@ -140,7 +136,7 @@ D  : Cental spacing in the booklet (default 60)"
 
 function arpscan () {
     INTERFACE=${INTERFACE:-wlp2s0}
-    sudo arp-scan --interface=$INTERFACE --localnet
+    sudo arp-scan --interface="$INTERFACE" --localnet
 }
 
 function setmac () {
@@ -149,9 +145,9 @@ function setmac () {
         echo "No MAC specified"
     else
         echo "Setting $INTERFACE MAC to $1"
-        sudo ifconfig $INTERFACE down
-        sudo ifconfig $INTERFACE hw ether "$1"
-        sudo ifconfig $INTERFACE up
+        sudo ifconfig "$INTERFACE" down
+        sudo ifconfig "$INTERFACE" hw ether "$1"
+        sudo ifconfig "$INTERFACE" up
         echo "Done"
     fi
 }
@@ -167,42 +163,42 @@ function s3du () {
 # =============================================================================
 
 # build a source : build file.ext [flags]
-function build () {
-    if [[ -f $1 ]] ; then
-        local NOEXT=$(echo "$1" | sed -r "s/(.*)\\..*/\1/")
-        echo "$1 -> $NOEXT"
-        case $1 in
-            *.c)   gcc -Wall --std=c11   $2 "$1" -o "$NOEXT"            ;;
-            *.cpp) g++ -Wall --std=c++11 $2 "$1" -o "$NOEXT"            ;;
-            *.tex) xelatex -synctex=1 -interaction=nonstopmode $2 "$1"  ;;
-            *)     echo "$1 cannot be built via build"                  ;;
-        esac
-    else
-        echo "$1 is not a valid file"
-    fi
-}
+# function build () {
+#     if [[ -f $1 ]] ; then
+#         local NOEXT=$(echo "$1" | sed -r "s/(.*)\\..*/\1/")
+#         echo "$1 -> $NOEXT"
+#         case $1 in
+#             *.c)   gcc -Wall --std=c11   $2 "$1" -o "$NOEXT"            ;;
+#             *.cpp) g++ -Wall --std=c++11 $2 "$1" -o "$NOEXT"            ;;
+#             *.tex) xelatex -synctex=1 -interaction=nonstopmode $2 "$1"  ;;
+#             *)     echo "$1 cannot be built via build"                  ;;
+#         esac
+#     else
+#         echo "$1 is not a valid file"
+#     fi
+# }
 
 # uncompress an archive
-function extract () {
-    if [[ -f "$1" ]] ; then
-        case $1 in
-            *.tar.bz2) tar xjf $1                                ;;
-            *.tar.gz)  tar xzf $1                                ;;
-            *.bz2)     bunzip2 $1                                ;;
-            *.rar)     unrar e $1                                ;;
-            *.gz)      gunzip $1                                 ;;
-            *.tar)     tar xf $1                                 ;;
-            *.tbz2)    tar xjf $1                                ;;
-            *.tgz)     tar xzf $1                                ;;
-            *.zip)     unzip $1                                  ;;
-            *.Z)       uncompress $1                             ;;
-            *.7z)      p7zip -d $1                               ;;
-            *)         echo "$1 cannot be extracted via extract" ;;
-        esac
-     else
-        echo "$1 is not a valid file"
-     fi
-}
+# function extract () {
+#     if [[ -f "$1" ]] ; then
+#         case $1 in
+#             *.tar.bz2) tar xjf "$1"                              ;;
+#             *.tar.gz)  tar xzf "$1"                              ;;
+#             *.bz2)     bunzip2 "$1"                              ;;
+#             *.rar)     unrar e "$1"                              ;;
+#             *.gz)      gunzip "$1"                               ;;
+#             *.tar)     tar xf "$1"                               ;;
+#             *.tbz2)    tar xjf "$1"                              ;;
+#             *.tgz)     tar xzf "$1"                              ;;
+#             *.zip)     unzip "$1"                                ;;
+#             *.Z)       uncompress "$1"                           ;;
+#             *.7z)      p7zip -d "$1"                             ;;
+#             *)         echo "$1 cannot be extracted via extract" ;;
+#         esac
+#      else
+#         echo "$1 is not a valid file"
+#      fi
+# }
 
 # removes common trash files
 function rmtmp () {
@@ -244,14 +240,6 @@ function rmtmp () {
 # tmux
 # =============================================================================
 
-# alias tl='tmux list-session'
-# alias tk='tmux kill-session -t'
-
-# attaches or creates a tmux session
-# function ta () {
-#     tmux has-session -t "$1" 2> /dev/null
-#     if [ $? != 0 ]; then
-#         tmux -2 new-session -d -s "$1"
-#     fi
-#     tmux -2 attach -t "$1"
-# }
+alias ta="tmux attach || tmux"
+alias tk="tmux kill-session -t"
+alias tl="tmux list-session"
