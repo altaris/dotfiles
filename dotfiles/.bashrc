@@ -45,9 +45,5 @@ else
     PS1="┌─[\u@\h]──[\w]\n└──╼ "
 fi
 
-# global
-if [[ -f ~/.shell_global ]]; then
-    . ~/.shell_global
-fi
-
+[ -f ~/.shell_global ] && source ~/.shell_global
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
