@@ -1,6 +1,7 @@
 src,linux,darwin
 dotfiles/.config/htop/htoprc,~/.config/htop/htoprc,~/.config/htop/htoprc
 dotfiles/.shell_global,~/.shell_global,~/.shell_global
+dotfiles/.shell_prompt,~/.shell_prompt,~/.shell_prompt
 dotfiles/.vimrc,~/.vimrc,~/.vimrc
 dotfiles/.Xresources,~/.Xresources,FALSE
 dotfiles/.bashrc,~/.bashrc,FALSE

@@ -78,12 +78,8 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 [ -f ~/.shell_global ] && . ~/.shell_global
+[ -f ~/.shell_prompt ] && . ~/.shell_prompt
 
 if [ "$(uname)" = "Darwin" ]; then
     export PATH="$PATH:$HOME/Library/Python/3.8/bin"
 fi
-
-PROMPT="┌─[%{$fg_bold[yellow]%}%n%{$reset_color%}@%{$fg_bold[red]%}%m\
-%{$reset_color%}:%{$fg_bold[blue]%}%~%{$reset_color%}]
-└──╼ "
-RPROMPT="%{$fg_no_bold[magenta]%}[%?]%{$reset_color%}"
