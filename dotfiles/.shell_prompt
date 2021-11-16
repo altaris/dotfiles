@@ -20,7 +20,7 @@ function __virtualenv {
     [ "$VIRTUAL_ENV" ] && echo "[%{$fg_no_bold[magenta]%}$(basename $VIRTUAL_ENV)%{$reset_color%}]"
 }
 
-PROMPT="┌─[%{$fg_bold[yellow]%}%n%{$reset_color%}@%{$fg_bold[red]%}%m\
+PROMPT="┌─[%{$fg_bold[yellow]%}%n%{$reset_color%}@%{$fg_bold[red]%}%M\
 %{$reset_color%}:%{$fg_bold[blue]%}%~%{$reset_color%}]
 └─$(__virtualenv)─╼ "
 # RPROMPT="%{$fg_no_bold[magenta]%}[%?]%{$reset_color%}"
