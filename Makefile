@@ -51,7 +51,7 @@ install-force:
 	@echo "Symlinking dotfiles"
 	@echo "============================================================"
 	@echo
-	./install.py --force
+	./install.py --force y
 	@echo
 	@echo "============================================================"
 	@echo "Installing oh-my-zsh"
