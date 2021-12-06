@@ -743,7 +743,7 @@
     },
     "sequence.replaceSelection": true,
     "terminal.external.linuxExec": "/usr/bin/zsh",
-    "editor.fontFamily": "'JetBrains Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontFamily": "'Fira Code', 'JetBrains Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.fontLigatures": true,
     "files.associations": {
         ".latexmkrc": "perl",
