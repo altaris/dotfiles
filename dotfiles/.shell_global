@@ -34,12 +34,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias vdir="vdir --color=auto"
 fi
 
-# alias ..="cd .."
-# alias ...="cd ../.."
-# alias ....="cd ../../.."
-# alias .....="cd ../../../.."
-# alias ......="cd ../../../../.."
-alias ccat="bat --theme "Monokai Extended" --style changes,grid,numbers"
 alias cpr="cp -r"
 alias l="ls -CF"
 alias la="ls -A"
