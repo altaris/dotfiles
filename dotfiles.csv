@@ -12,5 +12,6 @@ dotfiles/.config/Code/User/keybindings.darwin.json,,~/Library/Application Suppor
 dotfiles/.config/Code/User/settings.json,~/.config/Code/User/settings.json,~/Library/Application Support/Code/User/settings.json
 dotfiles/.gitconfig,~/.gitconfig,~/.gitconfig
 dotfiles/.config/karabiner/karabiner.json,FALSE,~/.config/karabiner/karabiner.json
+dotfiles/.config/karabiner/assets,FALSE,~/.config/karabiner/assets
 dotfiles/.zshrc,~/.zshrc,~/.zshrc
 dotfiles/.tmux.conf,~/.tmux.conf,~/.tmux.conf
