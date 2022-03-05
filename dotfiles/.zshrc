@@ -81,5 +81,5 @@ source $ZSH/oh-my-zsh.sh
 [ -f ~/.shell_prompt ] && . ~/.shell_prompt
 
 if [ "$(uname)" = "Darwin" ]; then
-    export PATH="$PATH:$HOME/Library/Python/3.8/bin"
+    export PATH="$PATH:$HOME/Library/Python/3.8/bin:/opt/homebrew/bin"
 fi
