@@ -608,11 +608,6 @@
         "when": "editorFocus"
     },
     {
-        "key": "alt+l",
-        "command": "toggleFindInSelection",
-        "when": "editorFocus"
-    },
-    {
         "key": "alt+cmd+l",
         "command": "-toggleFindInSelection",
         "when": "editorFocus"
@@ -909,7 +904,7 @@
         "when": "breadcrumbsPossible"
     },
     {
-        "key": "cmd+[Period]",
+        "key": "alt+l",
         "command": "editor.action.smartSelect.expand",
         "when": "editorTextFocus"
     },

@@ -326,7 +326,6 @@
     "files.simpleDialog.enable": true,
     "rewrap.wrappingColumn": 79,
     "explorer.confirmDragAndDrop": false,
-    "cSpell.diagnosticLevel": "Hint",
     "files.exclude": {
         "**/_minted*": true,
         "**/.*.lb": true,
@@ -770,6 +769,7 @@
         "bijective",
         "bisimplicial",
         "Bousfield",
+        "Cédric",
         "coalgebra",
         "cobase",
         "cocartesian",
@@ -802,6 +802,7 @@
         "infinitary",
         "injective",
         "Injectivity",
+        "kappak",
         "monoid",
         "morphism",
         "morphisms",
@@ -853,7 +854,6 @@
     "python.showStartPage": false,
     "python.analysis.autoImportCompletions": false,
     "notebook.outline.showCodeCells": true,
-    "editor.minimap.enabled": false,
     "security.workspace.trust.untrustedFiles": "open",
     "[python]": {
         "editor.defaultFormatter": "ms-python.python"
@@ -862,7 +862,6 @@
     "gitlens.hovers.currentLine.over": "line",
     "gitlens.defaultDateFormat": null,
     "gitlens.currentLine.enabled": false,
-    "gitlens.codeLens.enabled": false,
     "gitlens.statusBar.enabled": false,
     "go.buildOnSave": "off",
     "go.toolsManagement.autoUpdate": true,
@@ -887,5 +886,10 @@
     "cSpell.allowCompoundWords": true,
     "cSpell.language": "en,fr",
     "cSpell.logLevel": "Warning",
-    "telemetry.telemetryLevel": "off"
+    "telemetry.telemetryLevel": "off",
+    "editor.minimap.enabled": false,
+    "shellcheck.useWorkspaceRootAsCwd": true,
+    "cSpell.showStatusAlignment": "Left",
+    "cSpell.suggestionNumChanges": 5,
+    "gitlens.codeLens.enabled": false
 }
