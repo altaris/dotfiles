@@ -212,7 +212,7 @@ function rmtmp () {
     find . -type f -name "*.aux"            -print -delete
     find . -type f -name "*.bbl"            -print -delete
     find . -type f -name "*.blg"            -print -delete
-    find . -type f -name "*.idx"            -print -delete
+    find . -type f -name "*.idx" -not -path "**/.git/**" -print -delete
     find . -type f -name "*.ilg"            -print -delete
     find . -type f -name "*.ind"            -print -delete
     find . -type f -name "*.log"            -print -delete
