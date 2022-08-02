@@ -484,12 +484,9 @@ au CursorHold * let &ro = &ro
 
 """" Color Scheme
 
-
-syntax enable           " Enable syntax highlighting
-
+syntax enable         " Enable syntax highlighting
 set t_Co=256          " 256 colours, please
-
-colorscheme desert
+""" colorscheme desert
 
 if has("gui_running")       " Set extra options when running in GUI mode
     set guioptions-=T
