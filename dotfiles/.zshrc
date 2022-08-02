@@ -83,3 +83,7 @@ source $ZSH/oh-my-zsh.sh
 if [ "$(uname)" = "Darwin" ]; then
     export PATH="$PATH:$HOME/Library/Python/3.8/bin:/opt/homebrew/bin"
 fi
+
+[ -d ~/Development/flutter/bin ] && PATH="$PATH:$HOME/Development/flutter/bin"
+[ -d ~/bin ] && PATH="$PATH:$HOME/bin"
+[ -d /opt/homebrew/bin/latexmk ] && PATH="$PATH:/opt/homebrew/bin/latexmk"
