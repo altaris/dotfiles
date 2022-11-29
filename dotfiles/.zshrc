@@ -1,6 +1,18 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+if [ "$(uname)" = "Darwin" ]; then
+    export PATH="$PATH:$HOME/Library/Python/3.8/bin"
+fi
+
+[ -d ~/Development/flutter/bin ] && export PATH="$PATH:$HOME/Development/flutter/bin"
+[ -d ~/bin ] && export PATH="$PATH:$HOME/bin"
+[ -d /opt/homebrew/bin ] && export PATH="$PATH:/opt/homebrew/bin"
+[ -d /opt/homebrew/sbin ] && export PATH="$PATH:/opt/homebrew/sbin"
+[ -d /opt/homebrew/share/man ] && export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:"
+[ -d /opt/homebrew/share/info ] && export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
+[ -d ~/opt/miniconda3/bin ] && export PATH="$PATH:$HOME/opt/miniconda3/bin"
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -79,11 +91,3 @@ source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.shell_global ] && . ~/.shell_global
 [ -f ~/.shell_prompt ] && . ~/.shell_prompt
-
-if [ "$(uname)" = "Darwin" ]; then
-    export PATH="$PATH:$HOME/Library/Python/3.8/bin:/opt/homebrew/bin"
-fi
-
-[ -d ~/Development/flutter/bin ] && PATH="$PATH:$HOME/Development/flutter/bin"
-[ -d ~/bin ] && PATH="$PATH:$HOME/bin"
-[ -d /opt/homebrew/bin/latexmk ] && PATH="$PATH:/opt/homebrew/bin/latexmk"
