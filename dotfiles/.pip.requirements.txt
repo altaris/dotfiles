@@ -1,0 +1,10 @@
+black
+bokeh
+keras
+matplotlib
+mypy
+numpy
+pandas
+pylint
+scipy
+seaborn
