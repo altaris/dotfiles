@@ -5,13 +5,15 @@ if [ "$(uname)" = "Darwin" ]; then
     export PATH="$PATH:$HOME/Library/Python/3.8/bin"
 fi
 
-[ -d ~/Development/flutter/bin ] && export PATH="$PATH:$HOME/Development/flutter/bin"
-[ -d ~/bin ] && export PATH="$PATH:$HOME/bin"
 [ -d /opt/homebrew/bin ] && export PATH="$PATH:/opt/homebrew/bin"
 [ -d /opt/homebrew/sbin ] && export PATH="$PATH:/opt/homebrew/sbin"
-[ -d /opt/homebrew/share/man ] && export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:"
 [ -d /opt/homebrew/share/info ] && export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
-[ -d ~/opt/miniconda3/bin ] && export PATH="$PATH:$HOME/opt/miniconda3/bin"
+[ -d /opt/homebrew/share/man ] && export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:"
+[ -d $HOME/bin ] && export PATH="$PATH:$HOME/bin"
+[ -d $HOME/Development/flutter/bin ] && export PATH="$PATH:$HOME/Development/flutter/bin"
+[ -d $HOME/Library/Python/3.9/bin ] && export PATH="$PATH:$HOME/Library/Python/3.9/bin"
+[ -d $HOME/opt/miniconda3/bin ] && export PATH="$PATH:$HOME/opt/miniconda3/bin"
+[ -d $HOME/.local/bin ] && export PATH="$PATH:$HOME/.local/bin"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
