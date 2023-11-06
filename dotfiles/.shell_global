@@ -78,7 +78,7 @@ alias gits="git status"
 # python
 # =============================================================================
 
-alias py="python3.8"
+alias py="python3.11"
 
 function patch_virtualenv {
     [ "$VIRTUAL_ENV" ] || VIRTUAL_ENV="${1:$(pwd)/venv}"
