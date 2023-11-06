@@ -2,7 +2,6 @@
     "code-runner.saveAllFilesBeforeRun": true,
     "editor.suggest.snippetsPreventQuickSuggestions": false,
     "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": false,
-    "python.linting.pycodestyleEnabled": false,
     "latex-workshop.latex.autoBuild.run": "never",
     "telemetry.telemetryLevel": "off",
     "go.formatOnSave": "off",
@@ -18,7 +17,6 @@
         "requirements.txt": "pip-requirements",
         "requirements.*.txt": "pip-requirements",
     },
-    "python.formatting.provider": "black",
     "extensions.ignoreRecommendations": true,
     "latex-workshop.view.pdf.hand": true,
     "files.hotExit": "off",
@@ -44,26 +42,38 @@
         {
             "name": "biber",
             "command": "biber",
-            "args": ["%DOCFILE%"]
+            "args": [
+                "%DOCFILE%"
+            ]
         },
         {
             "name": "bibtex",
             "command": "bibtex",
-            "args": ["%DOCFILE%"]
+            "args": [
+                "%DOCFILE%"
+            ]
         },
         {
             "name": "bibtex8",
             "command": "bibtex8",
-            "args": ["%DOCFILE%"]
+            "args": [
+                "%DOCFILE%"
+            ]
         },
         {
-            "args": ["-T tight", "-D 120", "%DOCFILE%.dvi"],
+            "args": [
+                "-T tight",
+                "-D 120",
+                "%DOCFILE%.dvi"
+            ],
             "name": "dvipng",
             "command": "dvipng",
             "env": {}
         },
         {
-            "args": ["%DOCFILE%.dvi"],
+            "args": [
+                "%DOCFILE%.dvi"
+            ],
             "name": "dvipdf",
             "command": "dvipdf",
             "env": {}
@@ -71,7 +81,9 @@
         {
             "name": "dvips",
             "command": "dvips",
-            "args": ["%DOCFILE%.dvi"]
+            "args": [
+                "%DOCFILE%.dvi"
+            ]
         },
         {
             "name": "latex",
@@ -100,7 +112,10 @@
         {
             "name": "latexmk-clean",
             "command": "latexmk",
-            "args": ["-outdir=%OUTDIR%", "-c"]
+            "args": [
+                "-outdir=%OUTDIR%",
+                "-c"
+            ]
         },
         {
             "name": "latexmk-xelatex",
@@ -129,12 +144,16 @@
         {
             "name": "makeglossaries",
             "command": "makeglossaries",
-            "args": ["%DOCFILE%"]
+            "args": [
+                "%DOCFILE%"
+            ]
         },
         {
             "name": "makeindex",
             "command": "makeindex",
-            "args": ["%DOCFILE%.idx"]
+            "args": [
+                "%DOCFILE%.idx"
+            ]
         },
         {
             "name": "pdflatex",
@@ -148,7 +167,9 @@
             ]
         },
         {
-            "args": ["%DOCFILE%"],
+            "args": [
+                "%DOCFILE%"
+            ],
             "name": "ps2pdf",
             "command": "ps2pdf",
             "env": {}
@@ -172,75 +193,117 @@
     "latex-workshop.latex.recipes": [
         {
             "name": "latexmk (xelatex)",
-            "tools": ["latexmk-xelatex"]
+            "tools": [
+                "latexmk-xelatex"
+            ]
         },
         {
             "name": "xelatex",
-            "tools": ["xelatex"]
+            "tools": [
+                "xelatex"
+            ]
         },
         {
             "name": "latexmk clean",
-            "tools": ["latexmk-clean"]
+            "tools": [
+                "latexmk-clean"
+            ]
         },
         {
             "name": "latexmk (pdf)",
-            "tools": ["latexmk"]
+            "tools": [
+                "latexmk"
+            ]
         },
         {
             "name": "xelatex full",
-            "tools": ["xelatex", "bibtex", "xelatex", "xelatex"]
+            "tools": [
+                "xelatex",
+                "bibtex",
+                "xelatex",
+                "xelatex"
+            ]
         },
         {
             "name": "bibtex",
-            "tools": ["bibtex"]
+            "tools": [
+                "bibtex"
+            ]
         },
         {
             "name": "makeindex",
-            "tools": ["makeindex"]
+            "tools": [
+                "makeindex"
+            ]
         },
         {
             "name": "pdflatex",
-            "tools": ["pdflatex"]
+            "tools": [
+                "pdflatex"
+            ]
         },
         {
             "name": "pdflatex full",
-            "tools": ["pdflatex", "bibtex", "pdflatex", "pdflatex"]
+            "tools": [
+                "pdflatex",
+                "bibtex",
+                "pdflatex",
+                "pdflatex"
+            ]
         },
         {
             "name": "biber",
-            "tools": ["biber"]
+            "tools": [
+                "biber"
+            ]
         },
         {
             "name": "bibtex8",
-            "tools": ["bibtex8"]
+            "tools": [
+                "bibtex8"
+            ]
         },
         {
             "name": "dvipng",
-            "tools": ["dvipng"]
+            "tools": [
+                "dvipng"
+            ]
         },
         {
             "name": "dvipdf",
-            "tools": ["dvipdf"]
+            "tools": [
+                "dvipdf"
+            ]
         },
         {
             "name": "dvips",
-            "tools": ["dvips"]
+            "tools": [
+                "dvips"
+            ]
         },
         {
             "name": "latex",
-            "tools": ["latex"]
+            "tools": [
+                "latex"
+            ]
         },
         {
             "name": "lualatex",
-            "tools": ["lualatex"]
+            "tools": [
+                "lualatex"
+            ]
         },
         {
             "name": "makeglossaries",
-            "tools": ["makeglossaries"]
+            "tools": [
+                "makeglossaries"
+            ]
         },
         {
             "name": "ps2pdf",
-            "tools": ["ps2pdf"]
+            "tools": [
+                "ps2pdf"
+            ]
         }
     ],
     "workbench.startupEditor": "none",
@@ -396,7 +459,6 @@
     },
     "window.titleBarStyle": "custom",
     "latex-workshop.view.outline.floats.enabled": false,
-    "python.linting.pylintArgs": ["--ignore=E501"],
     "latex-workshop.intellisense.unimathsymbols.enabled": true,
     "terminal.integrated.defaultProfile.osx": "zsh",
     "latex-workshop.view.outline.labels.enabled": false,
@@ -405,7 +467,15 @@
     "[python]": {
         "editor.tabSize": 4,
         "editor.insertSpaces": true,
-        "editor.formatOnSave": true
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "ms-python.black-formatter",
+    },
+    "[json]": {
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        "editor.suggest.insertMode": "replace",
+        "editor.formatOnSave": true,
     },
     "workbench.preferredLightColorTheme": "Solarized Light",
     "explorer.confirmDelete": false,
@@ -428,7 +498,9 @@
     "terminal.integrated.tabs.enabled": true,
     "python.autoComplete.addBrackets": true,
     "latex-workshop.synctex.afterBuild.enabled": true,
-    "editor.rulers": [80],
+    "editor.rulers": [
+        80
+    ],
     "terminal.integrated.defaultProfile.linux": "zsh",
     "go.vetOnSave": "off",
     "go.buildOnSave": "off",
@@ -733,7 +805,9 @@
         "editor.selectionHighlight": false,
         "editor.formatOnSave": true,
         "editor.formatOnType": true,
-        "editor.rulers": [80]
+        "editor.rulers": [
+            80
+        ]
     },
     "workbench.tree.renderIndentGuides": "always",
     "latex-workshop.message.information.show": true,
@@ -741,78 +815,9 @@
     "terminal.external.linuxExec": "/usr/bin/zsh",
     "git.autofetchPeriod": 300,
     "sequence.replaceSelection": true,
-    "cSpell.userWords": [
-        "Bousfield",
-        "Injectivity",
-        "Riemannian",
-        "acyclicity",
-        "adjacencies",
-        "arities",
-        "associahedron",
-        "associahedrons",
-        "bicategory",
-        "bijective",
-        "bisimplicial",
-        "coalgebra",
-        "cobase",
-        "cocartesian",
-        "cocone",
-        "coequalizers",
-        "cofaces",
-        "cofibrantly",
-        "cofibration",
-        "coinductive",
-        "colimits",
-        "combinad",
-        "combinads",
-        "combinatorics",
-        "corestricts",
-        "cotensor",
-        "cotensored",
-        "differomorphic",
-        "differomorphism",
-        "epimorphism",
-        "exponentials",
-        "fiberwise",
-        "finitary",
-        "functorial",
-        "functors",
-        "homotopical",
-        "homotopies",
-        "homotopy",
-        "injective",
-        "monoid",
-        "morphism",
-        "morphisms",
-        "multitope",
-        "operad",
-        "opetope",
-        "opetopes",
-        "opetopic",
-        "plex",
-        "plexes",
-        "pointwise",
-        "polyplex",
-        "polyplexes",
-        "polytope",
-        "polytopes",
-        "presheaf",
-        "presheaves",
-        "pushout",
-        "representables",
-        "simplicial",
-        "subtrees",
-        "surjective",
-        "surjectivity",
-        "tensored",
-        "typecheck",
-        "unital",
-        "unitality"
-    ],
     "files.trimTrailingWhitespace": true,
     "shellcheck.run": "onSave",
     "go.toolsManagement.autoUpdate": true,
-    "python.linting.pylintEnabled": true,
     "git.confirmSync": false,
     "workbench.preferredDarkColorTheme": "Solarized Dark",
     "jupyter.jupyterServerType": "remote",
@@ -829,7 +834,10 @@
     "editor.minimap.enabled": false,
     "jupyter.debugJustMyCode": false,
     "python.terminal.activateEnvInCurrentTerminal": true,
-    "jupyter.widgetScriptSources": ["jsdelivr.com", "unpkg.com"],
+    "jupyter.widgetScriptSources": [
+        "jsdelivr.com",
+        "unpkg.com"
+    ],
     "notebook.showFoldingControls": "always",
     "jupyter.enableExtendedKernelCompletions": true,
     "jupyter.interactiveWindow.creationMode": "perFile",
@@ -843,15 +851,8 @@
     "audioCues.notebookCellCompleted": "off",
     "audioCues.notebookCellFailed": "off",
     "jupyter.showOutlineButtonInNotebookToolbar": false,
-    "python.formatting.blackArgs": [
-        "--line-length",
-        "79",
-        "--target-version",
-        "py310"
-    ],
     "notebook.output.fontSize": 11,
     "cmake.configureOnOpen": true,
-    "diffEditor.ignoreTrimWhitespace": false,
     "workbench.activityBar.visible": false,
     "git.defaultBranchName": "master",
     "autoDocstring.startOnNewLine": true,
@@ -859,20 +860,32 @@
     "editor.formatOnSave": true,
     "typst-lsp.trace.server": "messages",
     "cSpell.showAutocompleteSuggestions": true,
-    "cSpell.enableFiletypes": ["*", "!bib"],
+    "cSpell.enableFiletypes": [
+        "*",
+        "!bib"
+    ],
     "C_Cpp.vcFormat.wrap.preserveBlocks": "never",
     "C_Cpp.vcFormat.newLine.beforeOpenBrace.block": "newLine",
     "C_Cpp.vcFormat.newLine.beforeOpenBrace.function": "newLine",
     "C_Cpp.clang_format_fallbackStyle": "Google",
     "notebook.lineNumbers": "on",
     "window.zoomLevel": 1,
-    "prettier.tabWidth": 4,
     "notebook.formatOnSave.enabled": true,
-    "prettier.enableDebugLogs": true,
-    "prettier.documentSelectors": [
-        "**/*.py"
+    "mypy-type-checker.importStrategy": "fromEnvironment",
+    "pylint.importStrategy": "fromEnvironment",
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "black-formatter.args": [
+        "--line-length",
+        "79",
+        "--target-version",
+        "py310"
     ],
-    "[cpp]": {
-        "editor.defaultFormatter": "ms-vscode.cpptools"
-    }
+    "isort.check": true,
+    "isort.importStrategy": "fromEnvironment",
+    "isort.args": [
+        "--profile",
+        "black"
+    ]
 }
