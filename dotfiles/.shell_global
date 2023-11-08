@@ -81,9 +81,21 @@ alias gits="git status"
 alias py="python3.11"
 
 function patch_virtualenv {
-    [ "$VIRTUAL_ENV" ] || VIRTUAL_ENV="${1:$(pwd)/venv}"
+    [ -n "$VIRTUAL_ENV" ] || VIRTUAL_ENV="$(pwd)/venv"
     echo "Patching $VIRTUAL_ENV"
     echo "[ -f ~/.shell_prompt ] && . ~/.shell_prompt" >> "$VIRTUAL_ENV"/bin/activate
+}
+
+function make_venv {
+    [ -n "$VIRTUAL_ENV" ] || VIRTUAL_ENV="$(pwd)/venv"
+    [ -d "$VIRTUAL_ENV" ] && echo "$VIRTUAL_ENV already exists" && return
+    echo "Creating virtal $VIRTUAL_ENV"
+    virtualenv "$VIRTUAL_ENV" -p python3.11
+    patch_virtualenv
+    . "$VIRTUAL_ENV/bin/activate"
+    pip install -U pip
+    [ -f "requirements.txt" ] && pip install -U -r requirements.txt
+    [ -f "requirements.dev.txt" ] && pip install -U -r requirements.dev.txt
 }
 
 # =============================================================================
