@@ -37,7 +37,7 @@ alias cpr="cp -r"
 alias l="ls -CF"
 alias la="ls -A"
 alias ll="ls -alFh"
-alias rmr="rm -rf"
+alias rmr="rm -rfv"
 
 # cd && l
 function cl () {
