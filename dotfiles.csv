@@ -15,3 +15,4 @@ dotfiles/.config/karabiner/karabiner.json,FALSE,~/.config/karabiner/karabiner.js
 dotfiles/.config/karabiner/assets,FALSE,~/.config/karabiner/assets
 dotfiles/.zshrc,~/.zshrc,~/.zshrc
 dotfiles/.tmux.conf,~/.tmux.conf,~/.tmux.conf
+dotfiles/.ssh/config,~/.ssh/config,~/.ssh/config
