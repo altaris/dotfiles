@@ -1,4 +1,3 @@
-// Place your key bindings in this file to override the defaultsauto[]
 [
     {
         "key": "alt+s 1",
@@ -78,9 +77,6 @@
         "key": "shift+cmd+s",
         "command": "workbench.action.files.saveAll"
     },
-
-// -----------------------------------------------------------------------------
-
     {
         "key": "cmd+alt+b",
         "command": "-latex-workshop.build",
@@ -919,7 +915,7 @@
         "when": "editorTextFocus"
     },
     {
-        "key": "cmd+5",
+        "key": "cmd+[Comma]",
         "command": "editor.action.jumpToBracket",
         "when": "editorTextFocus"
     },
@@ -1028,5 +1024,15 @@
     {
         "key": "alt+s v",
         "command": "typst-lsp.showPdf"
+    },
+    {
+        "key": "tab tab",
+        "command": "github.copilot.acceptCursorPanelSolution",
+        "when": "github.copilot.activated && github.copilot.panelVisible"
+    },
+    {
+        "key": "ctrl+shift+[Period]",
+        "command": "-github.copilot.acceptCursorPanelSolution",
+        "when": "github.copilot.activated && github.copilot.panelVisible"
     },
 ]
