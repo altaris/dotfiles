@@ -129,8 +129,13 @@ function make_venv {
 
 function patch_virtualenv {
     [ -n "$VIRTUAL_ENV" ] || VIRTUAL_ENV="$(pwd)/venv"
+    ACTIVATE="$VIRTUAL_ENV/bin/activate"
+    PYTHON="$VIRTUAL_ENV/bin/python"
     echo "Patching $VIRTUAL_ENV"
-    echo "[ -f ~/.shell_prompt ] && . ~/.shell_prompt" >> "$VIRTUAL_ENV"/bin/activate
+    echo "[ -f ~/.shell_prompt ] && . ~/.shell_prompt" >> "$ACTIVATE"
+    echo "alias python=\"$PYTHON\"" >> "$ACTIVATE"
+    echo "alias py=\"$PYTHON\"" >> "$ACTIVATE"
+    echo "alias pip=\"$PYTHON -m pip\"" >> "$ACTIVATE"
 }
 
 function whichp {
