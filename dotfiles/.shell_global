@@ -106,18 +106,25 @@ alias py11="python3.11"
 alias python="python3.11"
 alias python3="python3.11"
 
-
-
 function make_venv {
     [ -n "$VIRTUAL_ENV" ] || VIRTUAL_ENV="$(pwd)/venv"
-    [ -d "$VIRTUAL_ENV" ] && echo "$VIRTUAL_ENV already exists" && return
-    echo "Creating virtal $VIRTUAL_ENV"
-    virtualenv "$VIRTUAL_ENV" -p python3.11
+    if [ -d "$VIRTUAL_ENV" ]; then
+        echo "Virtual env already exists: $VIRTUAL_ENV"
+    else
+        PYTHON_VERSION=${1:-3.11}
+        echo "Creating virtual env at: $VIRTUAL_ENV"
+        echo "Python version: $PYTHON_VERSION"
+        virtualenv "$VIRTUAL_ENV" -p "python$PYTHON_VERSION"
+    fi
     patch_virtualenv
     . "$VIRTUAL_ENV/bin/activate"
-    pip install -U pip
-    [ -f "requirements.txt" ] && pip install -U -r requirements.txt
-    [ -f "requirements.dev.txt" ] && pip install -U -r requirements.dev.txt
+    "$VIRTUAL_ENV/bin/pip" install -U pip
+    [ -f "requirements.txt" ] && "$VIRTUAL_ENV/bin/pip" install -U -r requirements.txt
+    [ -f "requirements.dev.txt" ] && "$VIRTUAL_ENV/bin/pip" install -U -r requirements.dev.txt
+    echo
+    echo Python aliases status
+    echo ---------------------
+    whichp
 }
 
 function patch_virtualenv {
