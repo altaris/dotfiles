@@ -132,10 +132,10 @@ function whichp {
     echo "pip       : $(which pip)"
     echo "python3.11: $(which python3.11)"
     echo "py11      : $(which py11)"
-    echo "pip11     : $(which py11)"
+    echo "pip11     : $(which pip11)"
     echo "python3.10: $(which python3.10)"
     echo "py10      : $(which py10)"
-    echo "pip10     : $(which py10)"
+    echo "pip10     : $(which pip10)"
 }
 
 
