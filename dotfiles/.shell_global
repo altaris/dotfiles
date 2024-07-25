@@ -107,20 +107,21 @@ alias python="python3.11"
 alias python3="python3.11"
 
 function make_venv {
-    [ -n "$VIRTUAL_ENV" ] || VIRTUAL_ENV="$(pwd)/venv"
-    if [ -d "$VIRTUAL_ENV" ]; then
-        echo "Virtual env already exists: $VIRTUAL_ENV"
+    local _VENV=${VIRTUAL_ENV:-"$(pwd)/venv"}
+    if [ -d "$_VENV" ]; then
+        echo "Virtual env already exists: $_VENV"
     else
-        PYTHON_VERSION=${1:-3.11}
-        echo "Creating virtual env at: $VIRTUAL_ENV"
-        echo "Python version: $PYTHON_VERSION"
-        virtualenv "$VIRTUAL_ENV" -p "python$PYTHON_VERSION"
+        local _PYTHON_VERSION=${1:-3.11}
+        echo "Creating virtual env at: $_VENV"
+        echo "Python version: $_PYTHON_VERSION"
+        virtualenv "$_VENV" -p "python$_PYTHON_VERSION"
     fi
     patch_virtualenv
-    . "$VIRTUAL_ENV/bin/activate"
-    "$VIRTUAL_ENV/bin/pip" install -U pip
-    [ -f "requirements.txt" ] && "$VIRTUAL_ENV/bin/pip" install -U -r requirements.txt
-    [ -f "requirements.dev.txt" ] && "$VIRTUAL_ENV/bin/pip" install -U -r requirements.dev.txt
+    local _PIP="$_VENV/bin/pip"
+    . "$_VENV/bin/activate"
+    _PIP install -U pip
+    [ -f "requirements.txt" ] && _PIP install -U -r requirements.txt
+    [ -f "requirements.dev.txt" ] && _PIP install -U -r requirements.dev.txt
     echo
     echo Python aliases status
     echo ---------------------
@@ -128,14 +129,14 @@ function make_venv {
 }
 
 function patch_virtualenv {
-    [ -n "$VIRTUAL_ENV" ] || VIRTUAL_ENV="$(pwd)/venv"
-    ACTIVATE="$VIRTUAL_ENV/bin/activate"
-    PYTHON="$VIRTUAL_ENV/bin/python"
-    echo "Patching $VIRTUAL_ENV"
-    echo "[ -f ~/.shell_prompt ] && . ~/.shell_prompt" >> "$ACTIVATE"
-    echo "alias python=\"$PYTHON\"" >> "$ACTIVATE"
-    echo "alias py=\"$PYTHON\"" >> "$ACTIVATE"
-    echo "alias pip=\"$PYTHON -m pip\"" >> "$ACTIVATE"
+    local _VENV=${VIRTUAL_ENV:-"$(pwd)/venv"}
+    local _ACTIVATE="$_VENV/bin/activate"
+    local _PYTHON="$_VENV/bin/python"
+    echo "Patching $_ACTIVATE"
+    echo "[ -f ~/.shell_prompt ] && . ~/.shell_prompt" >> "$_ACTIVATE"
+    echo "alias python=\"$_PYTHON\"" >> "$_ACTIVATE"
+    echo "alias py=\"$_PYTHON\"" >> "$_ACTIVATE"
+    echo "alias pip=\"$_PYTHON -m pip\"" >> "$_ACTIVATE"
 }
 
 function whichp {
@@ -207,19 +208,19 @@ D  : Cental spacing in the booklet (default 60)"
 }
 
 function arpscan () {
-    INTERFACE=${INTERFACE:-wlp2s0}
-    sudo arp-scan --interface="$INTERFACE" --localnet
+    local _INTERFACE=${1:-wlp2s0}
+    sudo arp-scan --interface="$_INTERFACE" --localnet
 }
 
 function setmac () {
-    INTERFACE=${INTERFACE:-wlp2s0}
+    local _INTERFACE=${1:-wlp2s0}
     if [[ -z "$1" ]]; then
         echo "No MAC specified"
     else
-        echo "Setting $INTERFACE MAC to $1"
-        sudo ifconfig "$INTERFACE" down
-        sudo ifconfig "$INTERFACE" hw ether "$1"
-        sudo ifconfig "$INTERFACE" up
+        echo "Setting $_INTERFACE MAC to $1"
+        sudo ifconfig "$_INTERFACE" down
+        sudo ifconfig "$_INTERFACE" hw ether "$1"
+        sudo ifconfig "$_INTERFACE" up
         echo "Done"
     fi
 }
@@ -237,11 +238,11 @@ function s3du () {
 # build a source : build file.ext [flags]
 # function build () {
 #     if [[ -f $1 ]] ; then
-#         local NOEXT=$(echo "$1" | sed -r "s/(.*)\\..*/\1/")
-#         echo "$1 -> $NOEXT"
+#         local _NOEXT=$(echo "$1" | sed -r "s/(.*)\\..*/\1/")
+#         echo "$1 -> $_NOEXT"
 #         case $1 in
-#             *.c)   gcc -Wall --std=c11   $2 "$1" -o "$NOEXT"            ;;
-#             *.cpp) g++ -Wall --std=c++11 $2 "$1" -o "$NOEXT"            ;;
+#             *.c)   gcc -Wall --std=c11   $2 "$1" -o "$_NOEXT"           ;;
+#             *.cpp) g++ -Wall --std=c++11 $2 "$1" -o "$_NOEXT"           ;;
 #             *.tex) xelatex -synctex=1 -interaction=nonstopmode $2 "$1"  ;;
 #             *)     echo "$1 cannot be built via build"                  ;;
 #         esac
