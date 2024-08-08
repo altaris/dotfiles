@@ -117,11 +117,11 @@ function make_venv {
         virtualenv "$_VENV" -p "python$_PYTHON_VERSION"
     fi
     patch_virtualenv
-    local _PIP="$_VENV/bin/pip"
+    _pip="$_VENV/bin/pip"
     . "$_VENV/bin/activate"
-    _PIP install -U pip
-    [ -f "requirements.txt" ] && _PIP install -U -r requirements.txt
-    [ -f "requirements.dev.txt" ] && _PIP install -U -r requirements.dev.txt
+    $_pip install -U pip
+    [ -f "requirements.txt" ] && $_pip install -U -r requirements.txt
+    [ -f "requirements.dev.txt" ] && $_pip install -U -r requirements.dev.txt
     echo
     echo Python aliases status
     echo ---------------------
