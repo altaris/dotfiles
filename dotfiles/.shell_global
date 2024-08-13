@@ -97,14 +97,16 @@ alias gits="git status"
 # python
 # =============================================================================
 
-alias pip="python3.11 -m pip"
-alias pip10="python3.10 -m pip"
-alias pip11="python3.11 -m pip"
-alias py="python3.11"
-alias py10="python3.10"
-alias py11="python3.11"
-alias python="python3.11"
 alias python3="python3.11"
+alias python="python3.11"
+alias py="python3.11"
+alias pip="python3.11 -m pip"
+alias py10="python3.10"
+alias pip10="python3.10 -m pip"
+alias py11="python3.11"
+alias pip11="python3.11 -m pip"
+alias py12="python3.12"
+alias pip12="python3.12 -m pip"
 
 function make_venv {
     local _VENV=${VIRTUAL_ENV:-"$(pwd)/venv"}
@@ -122,6 +124,7 @@ function make_venv {
     $_pip install -U pip
     [ -f "requirements.txt" ] && $_pip install -U -r requirements.txt
     [ -f "requirements.dev.txt" ] && $_pip install -U -r requirements.dev.txt
+    [ -f "requirements-dev.txt" ] && $_pip install -U -r requirements-dev.txt
     echo
     echo Python aliases status
     echo ---------------------
@@ -140,15 +143,18 @@ function patch_virtualenv {
 }
 
 function whichp {
-    echo "python    : $(which python)"
-    echo "py        : $(which py)"
-    echo "pip       : $(which pip)"
-    echo "python3.11: $(which python3.11)"
-    echo "py11      : $(which py11)"
-    echo "pip11     : $(which pip11)"
-    echo "python3.10: $(which python3.10)"
-    echo "py10      : $(which py10)"
-    echo "pip10     : $(which pip10)"
+    echo "python     ┬ $(which python)"
+    echo "py         | $(which py)"
+    echo "pip        ┴ $(which pip)"
+    echo "python3.10 ┬ $(which python3.10)"
+    echo "py10       | $(which py10)"
+    echo "pip10      ┴ $(which pip10)"
+    echo "python3.11 ┬ $(which python3.11)"
+    echo "py11       | $(which py11)"
+    echo "pip11      ┴ $(which pip11)"
+    echo "python3.12 ┬ $(which python3.12)"
+    echo "py12       | $(which py12)"
+    echo "pip12      ┴ $(which pip12)"
 }
 
 
