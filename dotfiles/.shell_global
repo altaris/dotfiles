@@ -145,6 +145,12 @@ alias ping8="ping 8.8.8.8"
 alias tree="tree -a"
 alias ux="chmod u+x"
 
+function ytdlmp3 {
+    yt-dlp --ignore-errors --format "(bestaudio[acodec^=opus]/bestaudio)/best" \
+        --extract-audio --audio-format mp3 --audio-quality 0 \
+        -o "%(playlist_index)s - %(title)s.%(ext)s" "$*"
+}
+
 function man () {
   env \
     LESS_TERMCAP_mb=$(printf "\e[1;31m") \
