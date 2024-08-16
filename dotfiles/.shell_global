@@ -26,21 +26,6 @@ export LC_ALL=
 
 
 # =============================================================================
-# apt
-# =============================================================================
-
-alias apta="sudo apt-get autoremove"
-alias apti="sudo apt-get install"
-alias aptr="sudo apt-get purge"
-alias aptu="sudo apt-get update"
-# alias aptU="sudo apt-get update && sudo apt-get dist-upgrade"
-
-# search the apt-cache
-function apts () {
-    apt-cache search "$1" | grep -i --color "$1";
-}
-
-# =============================================================================
 # file navigation
 # =============================================================================
 
@@ -59,18 +44,15 @@ alias la="ls -A"
 alias ll="ls -alFh"
 alias rmr="rm -rfv"
 
-# cd && l
-function cl () {
+function cl () {  # cd && l
     [ -d "$1" ] && cd "$1" && l
 }
 
-# cd && ll
-function cll () {
+function cll () {  # cd && ll
     [ -d "$1" ] && cd "$1" && ll
 }
 
-# mkdir && cd
-function mkcd () {
+function mkcd () {  # mkdir && cd
     mkdir -p "$1" && cd "$1"
 }
 
@@ -79,19 +61,14 @@ function mkcd () {
 # =============================================================================
 
 alias gita="git add"
-# alias gitb="git branch"
-# alias gitB="git checkout -b"
 alias gitc="git commit -a -m"
-# alias gitca="git commit --amend"
-# alias gitC="git checkout"
+alias gitca="git commit --amend"
 alias gitd="git diff"
 alias gitl="git log --graph --decorate --oneline"
-alias gitla="gitl --all"
 # alias gitl="git log --pretty=format:'%C(yellow)%h%Creset %C(bold)%s%Creset %C(blue)<%an>%Creset %Cred%D %Creset%Cgreen(%cr)%Creset' --graph"
-alias gitP="git push && git push origin --tags"
 alias gitp="git pull"
+alias gitP="git push && git push origin --tags"
 alias gits="git status"
-# alias gitt="git tag"
 
 # =============================================================================
 # python
@@ -162,17 +139,9 @@ function whichp {
 # other
 # =============================================================================
 
-# Add an "alert" alias for long running commands. Use like:
-#   sleep 10; alert
-# alias alert='notify-send --urgency=low -i \
-#     "$([ $? = 0 ] && echo terminal || echo error)" \
-#     "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias C="clear && cd ~"
 alias c="clear"
-alias clip="xclip -sel clip"
 alias ping8="ping 8.8.8.8"
-alias qpwgen="pwgen -Bcnsy -N 1 32"
-alias qsrm="shred -n 7 -u -v -z"
 alias tree="tree -a"
 alias ux="chmod u+x"
 
@@ -188,96 +157,9 @@ function man () {
     man "$@"
 }
 
-function mkbooklet () {
-    if [[ -z "$1" ]]; then
-        echo "Usage: $0 PDF_FILE [X1 [X2 [Y1 [Y2 [D]]]]]
-X1 : X coordinate of the bottom left corner of the crop box (default 110)
-Y1 : Y coordinate of the bottom left corner of the crop box (default 80)
-X2 : X coordinate of the top right corner of the crop box (default 490)
-Y2 : Y coordinate of the top right corner of the crop box (default 750)
-D  : Cental spacing in the booklet (default 60)"
-    elif [[ -f "$1" ]]; then
-        local TMPFILE="$(mktemp mkbooklet.tmp.XXXXXXXXXX.pdf)"
-        local X1=${2:-110}
-        local Y1=${3:-80}
-        local X2=${4:-490}
-        local Y2=${5:-750}
-        local D=${6:-60}
-        gs -o "$TMPFILE" -sDEVICE=pdfwrite -c "[/CropBox [$X1 $Y1 $X2 $Y2]" \
-            -c " /PAGES pdfmark" -f "$1"
-        pdfjam --booklet "true" --landscape --suffix "book" \
-            --delta "${D}mm 0mm" -- "$TMPFILE" -
-        rm "$TMPFILE"
-    else
-        echo "File \"$1\" doesn't exist or is not readable..."
-    fi
-}
-
-function arpscan () {
-    local _INTERFACE=${1:-wlp2s0}
-    sudo arp-scan --interface="$_INTERFACE" --localnet
-}
-
-function setmac () {
-    local _INTERFACE=${1:-wlp2s0}
-    if [[ -z "$1" ]]; then
-        echo "No MAC specified"
-    else
-        echo "Setting $_INTERFACE MAC to $1"
-        sudo ifconfig "$_INTERFACE" down
-        sudo ifconfig "$_INTERFACE" hw ether "$1"
-        sudo ifconfig "$_INTERFACE" up
-        echo "Done"
-    fi
-}
-
-function s3du () {
-    for i in $(s3cmd la | grep -E "s3.*" -o); do
-        s3cmd du -H $i
-    done
-}
-
 # =============================================================================
 # specialized file operations
 # =============================================================================
-
-# build a source : build file.ext [flags]
-# function build () {
-#     if [[ -f $1 ]] ; then
-#         local _NOEXT=$(echo "$1" | sed -r "s/(.*)\\..*/\1/")
-#         echo "$1 -> $_NOEXT"
-#         case $1 in
-#             *.c)   gcc -Wall --std=c11   $2 "$1" -o "$_NOEXT"           ;;
-#             *.cpp) g++ -Wall --std=c++11 $2 "$1" -o "$_NOEXT"           ;;
-#             *.tex) xelatex -synctex=1 -interaction=nonstopmode $2 "$1"  ;;
-#             *)     echo "$1 cannot be built via build"                  ;;
-#         esac
-#     else
-#         echo "$1 is not a valid file"
-#     fi
-# }
-
-# uncompress an archive
-# function extract () {
-#     if [[ -f "$1" ]] ; then
-#         case $1 in
-#             *.tar.bz2) tar xjf "$1"                              ;;
-#             *.tar.gz)  tar xzf "$1"                              ;;
-#             *.bz2)     bunzip2 "$1"                              ;;
-#             *.rar)     unrar e "$1"                              ;;
-#             *.gz)      gunzip "$1"                               ;;
-#             *.tar)     tar xf "$1"                               ;;
-#             *.tbz2)    tar xjf "$1"                              ;;
-#             *.tgz)     tar xzf "$1"                              ;;
-#             *.zip)     unzip "$1"                                ;;
-#             *.Z)       uncompress "$1"                           ;;
-#             *.7z)      p7zip -d "$1"                             ;;
-#             *)         echo "$1 cannot be extracted via extract" ;;
-#         esac
-#      else
-#         echo "$1 is not a valid file"
-#      fi
-# }
 
 # removes common trash files
 function rmtmp () {
