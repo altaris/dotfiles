@@ -11,6 +11,7 @@
 [ -d /opt/homebrew/share/man ] && export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:"
 [ -d $HOME/bin ] && export PATH="$PATH:$HOME/bin"
 [ -d $HOME/.local/bin ] && export PATH="$PATH:$HOME/.local/bin"
+[ -d $HOME/.cargo/env ] && export PATH="$PATH:$HOME/.cargo/env"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -90,3 +91,9 @@ source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.shell_global ] && . ~/.shell_global
 [ -f ~/.shell_prompt ] && . ~/.shell_prompt
+
+# # bun
+# export BUN_INSTALL="$HOME/Library/Application Support/reflex/bun"
+# export PATH="$BUN_INSTALL/bin:$PATH"
+
+. "$HOME/.cargo/env"
