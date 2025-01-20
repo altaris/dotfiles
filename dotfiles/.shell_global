@@ -70,6 +70,23 @@ alias gitp="git pull"
 alias gitP="git push && git push origin --tags"
 alias gits="git status"
 
+gitpsub() {
+  for DIR in */; do
+    echo
+    echo "=============================="
+    echo
+    if [ -d "$DIR/.git" ]; then
+      echo "Pulling latest changes in $DIR..."
+      (
+        cd "$DIR" || exit 1
+        git pull
+      )
+    else
+      echo "Skipping $DIR (not a git repository)"
+    fi
+  done
+}
+
 # =============================================================================
 # python
 # =============================================================================
