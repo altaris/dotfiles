@@ -44,15 +44,15 @@ alias la="ls -A"
 alias ll="ls -alFh"
 alias rmr="rm -rfv"
 
-function cl () {  # cd && l
+cl () {  # cd && l
     [ -d "$1" ] && cd "$1" && l
 }
 
-function cll () {  # cd && ll
+cll () {  # cd && ll
     [ -d "$1" ] && cd "$1" && ll
 }
 
-function mkcd () {  # mkdir && cd
+mkcd () {  # mkdir && cd
     mkdir -p "$1" && cd "$1"
 }
 
@@ -70,7 +70,7 @@ alias gitp="git pull"
 alias gitP="git push && git push origin --tags"
 alias gits="git status"
 
-gitpsub() {
+gitpsub () {
   for DIR in */; do
     echo
     echo "=============================="
@@ -102,7 +102,7 @@ alias pip11="python3.11 -m pip"
 alias py12="python3.12"
 alias pip12="python3.12 -m pip"
 
-function make_venv {
+make_venv () {
     local _VENV=${VIRTUAL_ENV:-"$(pwd)/venv"}
     if [ -d "$_VENV" ]; then
         echo "Virtual env already exists: $_VENV"
@@ -125,7 +125,7 @@ function make_venv {
     whichp
 }
 
-function patch_virtualenv {
+patch_virtualenv () {
     local _VENV=${VIRTUAL_ENV:-"$(pwd)/venv"}
     local _ACTIVATE="$_VENV/bin/activate"
     local _PYTHON="$_VENV/bin/python"
@@ -136,7 +136,7 @@ function patch_virtualenv {
     echo "alias pip=\"$_PYTHON -m pip\"" >> "$_ACTIVATE"
 }
 
-function whichp {
+whichp () {
     echo "python     ┬ $(which python)"
     echo "py         | $(which py)"
     echo "pip        ┴ $(which pip)"
@@ -162,13 +162,13 @@ alias ping8="ping 8.8.8.8"
 alias tree="tree -a"
 alias ux="chmod u+x"
 
-function ytdlmp3 {
+ytdlmp3 () {
     yt-dlp --ignore-errors --format "(bestaudio[acodec^=opus]/bestaudio)/best" \
         --extract-audio --audio-format mp3 --audio-quality 0 \
         -o "%(playlist_index)s - %(title)s.%(ext)s" "$*"
 }
 
-function man () {
+man () {
   env \
     LESS_TERMCAP_mb=$(printf "\e[1;31m") \
     LESS_TERMCAP_md=$(printf "\e[1;31m") \
@@ -185,7 +185,7 @@ function man () {
 # =============================================================================
 
 # removes common trash files
-function rmtmp () {
+rmtmp () {
     # tex
     find . -type d -name "_minted*"         -print -delete
     find . -type f -name "*.aux"            -print -delete
