@@ -227,10 +227,6 @@
         "command": "-workbench.view.scm"
     },
     {
-        "key": "alt+s m",
-        "command": "editor.action.toggleMinimap"
-    },
-    {
         "key": "alt+s p",
         "command": "workbench.action.togglePanel"
     },
@@ -1034,5 +1030,22 @@
         "key": "ctrl+shift+[Period]",
         "command": "-github.copilot.acceptCursorPanelSolution",
         "when": "github.copilot.activated && github.copilot.panelVisible"
+    },
+    {
+        "key": "shift+cmd+k",
+        "command": "editor.action.deleteLines"
+    },
+    {
+        "key": "shift+cmd+k",
+        "command": "-editor.action.deleteLines",
+        "when": "textInputFocus && !editorReadonly"
+    },
+    {
+        "key": "alt+s m",
+        "command": "makefile.buildAll"
+    },
+    {
+        "key": "alt+s shift+d",
+        "command": "debugpy.debugUsingLaunchConfig"
     },
 ]
