@@ -87,13 +87,5 @@ plugins=(fzf zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
 [ -f ~/.shell_global ] && . ~/.shell_global
 [ -f ~/.shell_prompt ] && . ~/.shell_prompt
-
-# # bun
-# export BUN_INSTALL="$HOME/Library/Application Support/reflex/bun"
-# export PATH="$BUN_INSTALL/bin:$PATH"
-
-. "$HOME/.cargo/env"
