@@ -162,11 +162,48 @@ alias ping8="ping 8.8.8.8"
 alias tree="tree -a"
 alias ux="chmod u+x"
 
-ytdlmp3 () {
-    yt-dlp --ignore-errors --format "(bestaudio[acodec^=opus]/bestaudio)/best" \
-        --extract-audio --audio-format mp3 --audio-quality 0 \
-        -o "%(playlist_index)s - %(title)s.%(ext)s" "$*"
+# ytdlmp3 () {
+#     yt-dlp --ignore-errors --format "(bestaudio[acodec^=opus]/bestaudio)/best" \
+#         --extract-audio --audio-format mp3 --audio-quality 0 \
+#         -o "%(playlist_index)s - %(title)s.%(ext)s" "$*"
+# }
+ytdlmp3() {
+    if ! command -v yt-dlp >/dev/null 2>&1; then
+        echo "Error: 'yt-dlp' is not installed. Please install it first." >&2
+        return 1
+    fi
+
+    if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
+        echo "Usage: download_audio YT_URL [OUTPUT_DIR]" >&2
+        return 1
+    fi
+
+    if [ "$#" -eq 2 ]; then
+        OUTPUT_DIR="$2"
+        if [ ! -d "$OUTPUT_DIR" ]; then
+            echo "Error: '$OUTPUT_DIR' is not a valid directory" >&2
+            return 1
+        fi
+    else
+        OUTPUT_DIR="."
+    fi
+
+    YT_URL="$1"
+    if yt-dlp --flat-playlist "$YT_URL" >/dev/null 2>&1; then
+        echo "Downloading playlist..."
+        yt-dlp -x --audio-format mp3 --embed-metadata \
+            -o "$OUTPUT_DIR/%(playlist_index)s %(title)s.%(ext)s" \
+            "$YT_URL"
+    else
+        echo "Downloading single video..."
+        yt-dlp -x --audio-format mp3 --embed-metadata \
+            -o "$OUTPUT_DIR/%(title)s.%(ext)s" \
+            "$YT_URL"
+    fi
+
+    echo "Download complete!"
 }
+
 
 man () {
   env \
@@ -184,40 +221,112 @@ man () {
 # specialized file operations
 # =============================================================================
 
-# removes common trash files
-rmtmp () {
-    # tex
-    find . -type d -name "_minted*"         -print -delete
-    find . -type f -name "*.aux"            -print -delete
-    find . -type f -name "*.bbl"            -print -delete
-    find . -type f -name "*.blg"            -print -delete
-    find . -type f -name "*.idx" -not -path "**/.git/**" -print -delete
-    find . -type f -name "*.ilg"            -print -delete
-    find . -type f -name "*.ind"            -print -delete
-    find . -type f -name "*.log"            -print -delete
-    find . -type f -name "*.out"            -print -delete
-    find . -type f -name "*.synctex.gz"     -print -delete
-    find . -type f -name "*.synctex(busy)"  -print -delete
-    find . -type f -name "*.toc"            -print -delete
-    find . -type f -name "*.fdb_latexmk"    -print -delete
-    find . -type f -name "*.fls"            -print -delete
-    find . -type f -name "*.nav"            -print -delete
-    find . -type f -name "*.snm"            -print -delete
-    find . -type f -name "*.xdv"            -print -delete
-    # gluplot
-    find . -type f -name "*.*.gnuplot"      -print -delete
-    find . -type f -name "*.*.table"        -print -delete
-    # compilers
-    find . -type f -name "*.class"          -print -delete
-    find . -type f -name "*.java~"          -print -delete
-    find . -type f -name "*.o"              -print -delete
-    # mac
-    if [ "$(uname)" != "Darwin" ]; then
-        find . -type d -name ".Spotlight-V100"  -print -delete
-        find . -type d -name ".Trashes"         -print -delete
-        find . -type f -name "._*"              -print -delete
-        find . -type f -name "*.DS_Store"       -print -delete
+compress() {
+    if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
+        echo "Usage: compress INPUT_FILE_OR_DIR [OUTPUT_FILE_OR_DIR]" >&2
+        return 1
     fi
+
+    INPUT="$1"
+    if [ ! -e "$INPUT" ]; then
+        echo "Error: '$INPUT' does not exist" >&2
+        return 1
+    fi
+    BASE_NAME=$(basename "$INPUT")
+
+    if [ "$#" -eq 1 ]; then
+        OUTPUT="./${BASE_NAME}.zip"
+    else
+        OUTPUT="$2"
+        if [ -d "$OUTPUT" ]; then
+            OUTPUT="$OUTPUT/${BASE_NAME}.zip"
+        fi
+    fi
+
+    if echo "$OUTPUT" | grep -qE '\.zip$'; then
+        if command -v zip >/dev/null 2>&1; then
+            zip -vr "$OUTPUT" "$INPUT"
+        else
+            echo "Error: 'zip' is not installed, cannot create ZIP archive" >&2
+            return 1
+        fi
+    elif echo "$OUTPUT" | grep -qE '\.tar\.gz$'; then
+        if command -v tar >/dev/null 2>&1; then
+            tar -cvzf "$OUTPUT" "$INPUT"
+        else
+            echo "Error: 'tar' is not installed, cannot create TAR.GZ archive" >&2
+            return 1
+        fi
+    else # Default to ZIP if no valid extension is provided
+        OUTPUT="${OUTPUT}.zip"
+        if command -v zip >/dev/null 2>&1; then
+            zip -vr "$OUTPUT" "$INPUT"
+        else
+            echo "Error: 'zip' is not installed, cannot create ZIP archive" >&2
+            return 1
+        fi
+    fi
+
+    echo "Created archive: $OUTPUT"
+}
+
+decompress() {
+    if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
+        echo "Usage: decompress ARCHIVE [OUTPUT_DIR]" >&2
+        return 1
+    fi
+
+    ARCHIVE="$1"
+    if [ ! -f "$ARCHIVE" ]; then
+        echo "Error: '$ARCHIVE' does not exist or is not a file" >&2
+        return 1
+    fi
+
+    if [ "$#" -eq 2 ]; then
+        OUTPUT_DIR="$2"
+        if [ ! -d "$OUTPUT_DIR" ]; then
+            echo "Error: '$OUTPUT_DIR' is not a directory" >&2
+            return 1
+        fi
+    else
+        OUTPUT_DIR="."
+    fi
+
+    if echo "$ARCHIVE" | grep -qE '\.zip$'; then
+        if command -v unzip >/dev/null 2>&1; then
+            unzip -v "$ARCHIVE" -d "$OUTPUT_DIR"
+        else
+            echo "Error: 'unzip' is not installed, cannot extract ZIP archive" >&2
+            return 1
+        fi
+    elif echo "$ARCHIVE" | grep -qE '\.tar\.gz$'; then
+        if command -v tar >/dev/null 2>&1; then
+            tar -xvzf "$ARCHIVE" -C "$OUTPUT_DIR"
+        else
+            echo "Error: 'tar' is not installed, cannot extract TAR.GZ archive" >&2
+            return 1
+        fi
+    else
+        echo "Error: Unsupported archive format. Supported formats: .zip, .tar.gz" >&2
+        return 1
+    fi
+
+    echo "Extracted '$ARCHIVE' to '$OUTPUT_DIR'"
+}
+
+
+# removes common trash files
+rmtmp() {
+    EXTENSIONS="*.*.gnuplot *.*.table *.aux *.bbl *.blg *.class *.fdb_latexmk *.fls *.idx *.ilg *.ind *.java~ *.log *.nav *.o *.out *.snm *.synctex.gz *.synctex(busy) *.toc *.xdv"
+    if [ "$(uname)" != "Darwin" ]; then
+        EXTENSIONS="$EXTENSIONS *.DS_Store .Trashes ._*"
+    fi
+    # shellcheck disable=SC2116,SC2086
+    for EXT in $(echo $EXTENSIONS); do  # now that's weird
+        find . -type f -name "$EXT" \
+            -not -path "./.git/**" -not -path "**/.git/**" \
+            -print -delete
+    done
 }
 
 # =============================================================================
