@@ -294,7 +294,7 @@ decompress() {
 
     if echo "$ARCHIVE" | grep -qE '\.zip$'; then
         if command -v unzip >/dev/null 2>&1; then
-            unzip -v "$ARCHIVE" -d "$OUTPUT_DIR"
+            unzip "$ARCHIVE" -d "$OUTPUT_DIR"
         else
             echo "Error: 'unzip' is not installed, cannot extract ZIP archive" >&2
             return 1
