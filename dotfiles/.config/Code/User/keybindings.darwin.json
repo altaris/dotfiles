@@ -1018,10 +1018,6 @@
         "when": "editorTextFocus"
     },
     {
-        "key": "alt+s v",
-        "command": "typst-lsp.showPdf"
-    },
-    {
         "key": "tab tab",
         "command": "github.copilot.acceptCursorPanelSolution",
         "when": "github.copilot.activated && github.copilot.panelVisible"
