@@ -253,7 +253,7 @@ compress() {
         tar --format=pax -cvjf "$@"
     }
     _tar_xz() {
-        tar --format=pax -cvJf "$@"
+        tar --format=pax --use-compress-program='xz -T0 -9' -cvf "$@"
     }
 
     if echo "$OUTPUT" | grep -qE '\.zip$'; then
