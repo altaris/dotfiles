@@ -243,24 +243,51 @@ compress() {
         fi
     fi
 
+    _zip() {
+        zip -vrX9y "$@"
+    }
+    _tar_gz() {
+        tar --format=pax -cvzf "$@"
+    }
+    _tar_bz2() {
+        tar --format=pax -cvjf "$@"
+    }
+    _tar_xz() {
+        tar --format=pax -cvJf "$@"
+    }
+
     if echo "$OUTPUT" | grep -qE '\.zip$'; then
         if command -v zip >/dev/null 2>&1; then
-            zip -vr "$OUTPUT" "$INPUT"
+            _zip "$OUTPUT" "$INPUT"
         else
-            echo "Error: 'zip' is not installed, cannot create ZIP archive" >&2
+            echo "Error: 'zip' is not installed, cannot create .zip archive" >&2
             return 1
         fi
     elif echo "$OUTPUT" | grep -qE '\.tar\.gz$'; then
         if command -v tar >/dev/null 2>&1; then
-            tar -cvzf "$OUTPUT" "$INPUT"
+            _tar_gz "$OUTPUT" "$INPUT"
         else
-            echo "Error: 'tar' is not installed, cannot create TAR.GZ archive" >&2
+            echo "Error: 'tar' is not installed, cannot create .tar.gz archive" >&2
+            return 1
+        fi
+    elif echo "$OUTPUT" | grep -qE '\.tar\.bz2$'; then
+        if command -v tar >/dev/null 2>&1; then
+            _tar_bz2 "$OUTPUT" "$INPUT"
+        else
+            echo "Error: 'tar' is not installed, cannot create .tar.bz2 archive" >&2
+            return 1
+        fi
+    elif echo "$OUTPUT" | grep -qE '\.tar\.xz$'; then
+        if command -v tar >/dev/null 2>&1; then
+            _tar_xz "$OUTPUT" "$INPUT"
+        else
+            echo "Error: 'tar' is not installed, cannot create .tar.xz archive" >&2
             return 1
         fi
     else # Default to ZIP if no valid extension is provided
         OUTPUT="${OUTPUT}.zip"
         if command -v zip >/dev/null 2>&1; then
-            zip -vr "$OUTPUT" "$INPUT"
+            _zip "$OUTPUT" "$INPUT"
         else
             echo "Error: 'zip' is not installed, cannot create ZIP archive" >&2
             return 1
@@ -301,7 +328,7 @@ decompress() {
         fi
     elif echo "$ARCHIVE" | grep -qE '\.tar\.gz$'; then
         if command -v tar >/dev/null 2>&1; then
-            tar -xvzf "$ARCHIVE" -C "$OUTPUT_DIR"
+            _tar_gz -C "$OUTPUT_DIR"
         else
             echo "Error: 'tar' is not installed, cannot extract TAR.GZ archive" >&2
             return 1
