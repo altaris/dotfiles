@@ -162,11 +162,6 @@ alias ping8="ping 8.8.8.8"
 alias tree="tree -a"
 alias ux="chmod u+x"
 
-# ytdlmp3 () {
-#     yt-dlp --ignore-errors --format "(bestaudio[acodec^=opus]/bestaudio)/best" \
-#         --extract-audio --audio-format mp3 --audio-quality 0 \
-#         -o "%(playlist_index)s - %(title)s.%(ext)s" "$*"
-# }
 ytdlmp3() {
     if ! command -v yt-dlp >/dev/null 2>&1; then
         echo "Error: 'yt-dlp' is not installed. Please install it first." >&2
@@ -354,6 +349,18 @@ rmtmp() {
             -not -path "./.git/**" -not -path "**/.git/**" \
             -print -delete
     done
+}
+
+hashdir() {
+    # Recursive hash of all files in a directory
+    if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
+        echo "Usage: hashdir DIR_PATH" >&2
+        return 1
+    fi
+    (
+        cd "$1" || return 1;
+        find . -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum --quiet
+    )
 }
 
 # =============================================================================
