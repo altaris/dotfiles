@@ -38,7 +38,7 @@
     },
     "[python]": {
         "diffEditor.ignoreTrimWhitespace": false,
-                "editor.insertSpaces": true,
+        "editor.insertSpaces": true,
         "editor.tabSize": 4,
         "editor.defaultFormatter": "charliermarsh.ruff"
     },
@@ -49,10 +49,11 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[typst]": {
-        "editor.defaultFormatter": "nvarner.typst-lsp",
+        "editor.defaultFormatter": "myriad-dreamin.tinymist",
         "rewrap.doubleSentenceSpacing": false,
         "rewrap.reformat": false,
-        "rewrap.wrappingColumn": 80
+        "rewrap.wrappingColumn": 80,
+        "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?"
     },
     "[yaml]": {
         "diffEditor.ignoreTrimWhitespace": false,
@@ -944,5 +945,13 @@
     "workbench.preferredLightColorTheme": "Catppuccin Latte",
     "workbench.startupEditor": "none",
     "workbench.tips.enabled": false,
-    "workbench.tree.renderIndentGuides": "always"
+    "workbench.tree.renderIndentGuides": "always",
+    "[typst-code]": {
+        "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?"
+    },
+    "security.promptForRemoteFileProtocolHandling": false,
+    "tinymist.exportPdf": "onSave",
+    "tinymist.formatterMode": "typstyle",
+    "tinymist.formatterPrintWidth": 80,
+    "tinymist.renderDocs": "disable"
 }
