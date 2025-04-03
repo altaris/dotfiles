@@ -101,29 +101,31 @@ alias py11="python3.11"
 alias pip11="python3.11 -m pip"
 alias py12="python3.12"
 alias pip12="python3.12 -m pip"
+alias py13="python3.13"
+alias pip13="python3.13 -m pip"
 
-make_venv () {
-    local _VENV=${VIRTUAL_ENV:-"$(pwd)/venv"}
-    if [ -d "$_VENV" ]; then
-        echo "Virtual env already exists: $_VENV"
-    else
-        local _PYTHON_VERSION=${1:-3.11}
-        echo "Creating virtual env at: $_VENV"
-        echo "Python version: $_PYTHON_VERSION"
-        virtualenv "$_VENV" -p "python$_PYTHON_VERSION"
-    fi
-    patch_virtualenv
-    _pip="$_VENV/bin/pip"
-    . "$_VENV/bin/activate"
-    $_pip install -U pip
-    [ -f "requirements.txt" ] && $_pip install -U -r requirements.txt
-    [ -f "requirements.dev.txt" ] && $_pip install -U -r requirements.dev.txt
-    [ -f "requirements-dev.txt" ] && $_pip install -U -r requirements-dev.txt
-    echo
-    echo Python aliases status
-    echo ---------------------
-    whichp
-}
+# make_venv () {
+#     local _VENV=${VIRTUAL_ENV:-"$(pwd)/venv"}
+#     if [ -d "$_VENV" ]; then
+#         echo "Virtual env already exists: $_VENV"
+#     else
+#         local _PYTHON_VERSION=${1:-3.11}
+#         echo "Creating virtual env at: $_VENV"
+#         echo "Python version: $_PYTHON_VERSION"
+#         virtualenv "$_VENV" -p "python$_PYTHON_VERSION"
+#     fi
+#     patch_virtualenv
+#     _pip="$_VENV/bin/pip"
+#     . "$_VENV/bin/activate"
+#     $_pip install -U pip
+#     [ -f "requirements.txt" ] && $_pip install -U -r requirements.txt
+#     [ -f "requirements.dev.txt" ] && $_pip install -U -r requirements.dev.txt
+#     [ -f "requirements-dev.txt" ] && $_pip install -U -r requirements-dev.txt
+#     echo
+#     echo Python aliases status
+#     echo ---------------------
+#     whichp
+# }
 
 patch_virtualenv () {
     local _VENV=${VIRTUAL_ENV:-"$(pwd)/venv"}
@@ -149,8 +151,18 @@ whichp () {
     echo "python3.12 ┬ $(which python3.12)"
     echo "py12       | $(which py12)"
     echo "pip12      ┴ $(which pip12)"
+    echo "python3.13 ┬ $(which python3.13)"
+    echo "py13       | $(which py13)"
+    echo "pip13      ┴ $(which pip13)"
 }
 
+install_kernel() {
+    if [ "$#" -ne 1 ]; then
+        echo "Usage: install_kernel <kernel_name>"
+        return 1
+    fi
+    uv run python -m ipykernel install --user --name "$1"
+}
 
 # =============================================================================
 # other
