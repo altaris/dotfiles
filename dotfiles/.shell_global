@@ -369,9 +369,15 @@ hashdir() {
         echo "Usage: hashdir DIR_PATH" >&2
         return 1
     fi
+    if type b3sum >/dev/null 2>&1; then
+        HASH_CMD="b3sum"
+    else
+        echo "b3sum not installed, falling back to md5sum"
+        HASH_CMD="md5sum"
+    fi
     (
         cd "$1" || return 1;
-        find . -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum --quiet
+        find . -type f -print0 | sort -z | xargs -0 $HASH_CMD | $HASH_CMD
     )
 }
 
