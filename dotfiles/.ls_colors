@@ -275,40 +275,40 @@ STICKY_OTHER_WRITABLE   30;42       # dir that is sticky and other-writable (+t,
 
 # Plain text / markup
 
-.txt            38;5;193
-.etx            38;5;193
-.info           38;5;193
-.markdown       38;5;193
-.md             38;5;193
-.mkd            38;5;193
-.nfo            38;5;193
-.pod            38;5;193
-.rst            38;5;193
-.textile        38;5;193
+# .txt            38;5;193
+# .etx            38;5;193
+# .info           38;5;193
+# .markdown       38;5;193
+# .md             38;5;193
+# .mkd            38;5;193
+# .nfo            38;5;193
+# .pod            38;5;193
+# .rst            38;5;193
+# .textile        38;5;193
 
 # Special files
 
-*README         38;5;193;4
-*readme         38;5;193;4
-*Readme         38;5;193;4
-*README.md      38;5;193;4
-*readme.md      38;5;193;4
-*Readme.md      38;5;193;4
-*README.rst     38;5;193;4
-*readme.rst     38;5;193;4
-*Readme.rst     38;5;193;4
-*LICENSE        38;5;193;4
-*COPYING        38;5;193;4
-*INSTALL        38;5;193;4
-*COPYRIGHT      38;5;193;4
-*AUTHORS        38;5;193;4
-*HISTORY        38;5;193;4
-*CONTRIBUTORS   38;5;193;4
-*PATENTS        38;5;193;4
-*VERSION        38;5;193;4
-*NOTICE         38;5;193;4
-*CHANGES        38;5;193;4
-*MANIFEST       38;5;193;4
+*README         38;5;69;1
+*readme         38;5;69;1
+*Readme         38;5;69;1
+*README.md      38;5;69;1
+*readme.md      38;5;69;1
+*Readme.md      38;5;69;1
+*README.rst     38;5;69;1
+*readme.rst     38;5;69;1
+*Readme.rst     38;5;69;1
+*LICENSE        38;5;69;1
+*COPYING        38;5;69;1
+*INSTALL        38;5;69;1
+*COPYRIGHT      38;5;69;1
+*AUTHORS        38;5;69;1
+*HISTORY        38;5;69;1
+*CONTRIBUTORS   38;5;69;1
+*PATENTS        38;5;69;1
+*VERSION        38;5;69;1
+*NOTICE         38;5;69;1
+*CHANGES        38;5;69;1
+*MANIFEST       38;5;69;1
 
 # Database
 
@@ -320,6 +320,7 @@ STICKY_OTHER_WRITABLE   30;42       # dir that is sticky and other-writable (+t,
 .RData          38;5;6
 .rdata          38;5;6
 .rss            38;5;6
+.toml           38;5;6
 .xml            38;5;6
 .yaml           38;5;6
 .yml            38;5;6
@@ -358,29 +359,45 @@ STICKY_OTHER_WRITABLE   30;42       # dir that is sticky and other-writable (+t,
 .xltm           38;5;141
 .xltx           38;5;141
 
-# Configuration
+# Configuration & dotfiles
 
-*cfg            38;5;134;1
-*conf           38;5;134;1
-*rc             38;5;134;1
-.cnf            38;5;134;1
-.dockerignore   38;5;134;1
-.env            38;5;134;1
-.face           38;5;134;1
-.git            38;5;134;1
-.gitattributes  38;5;134;1
-.gitconfig      38;5;134;1
-.gitignore      38;5;134;1
-.gitmodules     38;5;134;1
-.ini            38;5;134;1
-.ovpn           38;5;134;1
-.pcf            38;5;134;1
-.plist          38;5;134;1
-.psf            38;5;134;1
-.viminfo        38;5;134;1
-.Xdefaults      38;5;134;1
-.Xresources     38;5;134;1
-.zshenv         38;5;134;1
+.bash_history               38;5;250
+.bash_logout                38;5;250
+.cnf                        38;5;250
+.code-workspace             38;5;250
+.dockerignore               38;5;250
+.env                        38;5;250
+.face                       38;5;250
+.fzf.bash                   38;5;250
+.fzf.zsh                    38;5;250
+.git                        38;5;250
+.gitattributes              38;5;250
+.gitconfig                  38;5;250
+.gitignore                  38;5;250
+.gitmodules                 38;5;250
+.ini                        38;5;250
+.lessht                     38;5;250
+.lessht                     38;5;250
+.ls_colors                  38;5;250
+.ovpn                       38;5;250
+.pcf                        38;5;250
+.plist                      38;5;250
+.profile                    38;5;250
+.psf                        38;5;250
+.python_history             38;5;250
+.shell_global               38;5;250
+.shell_prompt               38;5;250
+.sudo_as_admin_successful   38;5;250
+.viminfo                    38;5;250
+.wget-hsts                  38;5;250
+.Xdefaults                  38;5;250
+.Xresources                 38;5;250
+.zcompdump                  38;5;250
+.zsh_history                38;5;250
+.zshenv                     38;5;250
+*cfg                        38;5;250
+*conf                       38;5;250
+*rc                         38;5;250
 
 # Source code
 
@@ -491,29 +508,29 @@ STICKY_OTHER_WRITABLE   30;42       # dir that is sticky and other-writable (+t,
 # Binaries
 # -------------------------------------
 
-.dmg         38;5;100;1
-.iso         38;5;100;1
-.bin         38;5;100;1
-.nrg         38;5;100;1
-.qcow        38;5;100;1
-.sparseimage 38;5;100;1
-.toast       38;5;100;1
-.vcd         38;5;100;1
-.vmdk        38;5;100;1
+.dmg          38;5;100;1
+.iso          38;5;100;1
+.bin          38;5;100;1
+.nrg          38;5;100;1
+.qcow         38;5;100;1
+.sparseimage  38;5;100;1
+.toast        38;5;100;1
+.vcd          38;5;100;1
+.vmdk         38;5;100;1
 
 # -------------------------------------
 # Fonts
 # -------------------------------------
 
-.afm                  38;5;66
-.fon                  38;5;66
-.fnt                  38;5;66
-.pfb                  38;5;66
-.pfm                  38;5;66
-.ttf                  38;5;66
-.otf                  38;5;66
-.PFA                  38;5;66
-.pfa                  38;5;66
+.afm          38;5;66
+.fon          38;5;66
+.fnt          38;5;66
+.pfb          38;5;66
+.pfm          38;5;66
+.ttf          38;5;66
+.otf          38;5;66
+.PFA          38;5;66
+.pfa          38;5;66
 
 # -------------------------------------
 # Databases
