@@ -372,13 +372,12 @@ hashdir() {
     if type b3sum >/dev/null 2>&1; then
         HASH_CMD="b3sum"
     else
-        echo "b3sum not installed, falling back to md5sum"
         HASH_CMD="md5sum"
     fi
-    (
-        cd "$1" || return 1;
-        find . -type f -print0 | sort -z | xargs -0 $HASH_CMD | $HASH_CMD
+    RESULT=$(
+        find "$1" -type f -print0 | xargs -0 $HASH_CMD | sed "s| $1/||" | sort | $HASH_CMD
     )
+    echo "$HASH_CMD":"$RESULT"
 }
 
 # =============================================================================
