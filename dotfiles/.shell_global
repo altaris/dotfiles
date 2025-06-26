@@ -230,122 +230,82 @@ man () {
 
 compress() {
     if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
-        echo "Usage: compress INPUT_FILE_OR_DIR [OUTPUT_FILE_OR_DIR]" >&2
+        echo "Usage: compress INPUT_FILE_OR_DIR [OUTPUT_FILE]" >&2
         return 1
     fi
 
     INPUT="$1"
-    if [ ! -e "$INPUT" ]; then
-        echo "Error: '$INPUT' does not exist" >&2
-        return 1
-    fi
+    [ -e "$INPUT" ] || { echo "Error: '$INPUT' does not exist" >&2; return 1; }
+
     BASE_NAME=$(basename "$INPUT")
+    OUTPUT="${2:-./$BASE_NAME.zip}"
+    [ -d "$OUTPUT" ] && OUTPUT="$OUTPUT/$BASE_NAME.zip"
 
-    if [ "$#" -eq 1 ]; then
-        OUTPUT="./${BASE_NAME}.zip"
-    else
-        OUTPUT="$2"
-        if [ -d "$OUTPUT" ]; then
-            OUTPUT="$OUTPUT/${BASE_NAME}.zip"
-        fi
-    fi
+    echo "Compressing '$INPUT' to '$OUTPUT'..."
 
-    _zip() {
-        zip -vrX9y "$@"
-    }
-    _tar_gz() {
-        tar --format=pax -cvzf "$@"
-    }
-    _tar_bz2() {
-        tar --format=pax -cvjf "$@"
-    }
-    _tar_xz() {
-        tar --format=pax --use-compress-program='xz -T0 -9' -cvf "$@"
-    }
-
-    if echo "$OUTPUT" | grep -qE '\.zip$'; then
-        if command -v zip >/dev/null 2>&1; then
-            _zip "$OUTPUT" "$INPUT"
-        else
-            echo "Error: 'zip' is not installed, cannot create .zip archive" >&2
-            return 1
-        fi
-    elif echo "$OUTPUT" | grep -qE '\.tar\.gz$'; then
-        if command -v tar >/dev/null 2>&1; then
-            _tar_gz "$OUTPUT" "$INPUT"
-        else
-            echo "Error: 'tar' is not installed, cannot create .tar.gz archive" >&2
-            return 1
-        fi
-    elif echo "$OUTPUT" | grep -qE '\.tar\.bz2$'; then
-        if command -v tar >/dev/null 2>&1; then
-            _tar_bz2 "$OUTPUT" "$INPUT"
-        else
-            echo "Error: 'tar' is not installed, cannot create .tar.bz2 archive" >&2
-            return 1
-        fi
-    elif echo "$OUTPUT" | grep -qE '\.tar\.xz$'; then
-        if command -v tar >/dev/null 2>&1; then
-            _tar_xz "$OUTPUT" "$INPUT"
-        else
-            echo "Error: 'tar' is not installed, cannot create .tar.xz archive" >&2
-            return 1
-        fi
-    else # Default to ZIP if no valid extension is provided
-        OUTPUT="${OUTPUT}.zip"
-        if command -v zip >/dev/null 2>&1; then
-            _zip "$OUTPUT" "$INPUT"
-        else
-            echo "Error: 'zip' is not installed, cannot create ZIP archive" >&2
-            return 1
-        fi
-    fi
+    case "$OUTPUT" in
+        *.zip)
+            command -v zip >/dev/null || { echo "Error: 'zip' not installed" >&2; return 1; }
+            zip -r9X "$OUTPUT" "$INPUT"
+            ;;
+        *.tar.gz)
+            tar --format=pax --create --gzip --verbose --file="$OUTPUT" "$INPUT"
+            ;;
+        *.tar.bz2)
+            tar --format=pax --create --bzip2 --verbose --file="$OUTPUT" "$INPUT"
+            ;;
+        *.tar.xz)
+            tar --format=pax --create --xz --verbose --file="$OUTPUT" "$INPUT"
+            ;;
+        *)
+            echo "Warning: Unknown extension, defaulting to .zip"
+            OUTPUT="$OUTPUT.zip"
+            command -v zip >/dev/null || { echo "Error: 'zip' not installed" >&2; return 1; }
+            zip -r9X "$OUTPUT" "$INPUT"
+            ;;
+    esac
 
     echo "Created archive: $OUTPUT"
 }
 
 decompress() {
     if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
-        echo "Usage: decompress ARCHIVE [OUTPUT_DIR]" >&2
+        echo "Usage: decompress ARCHIVE_FILE [OUTPUT_DIR]" >&2
         return 1
     fi
 
     ARCHIVE="$1"
-    if [ ! -f "$ARCHIVE" ]; then
-        echo "Error: '$ARCHIVE' does not exist or is not a file" >&2
-        return 1
-    fi
+    [ -f "$ARCHIVE" ] || { echo "Error: '$ARCHIVE' is not a file" >&2; return 1; }
 
-    if [ "$#" -eq 2 ]; then
-        OUTPUT_DIR="$2"
-        if [ ! -d "$OUTPUT_DIR" ]; then
-            echo "Error: '$OUTPUT_DIR' is not a directory" >&2
-            return 1
-        fi
-    else
-        OUTPUT_DIR="."
-    fi
+    OUTPUT_DIR="${2:-.}"
+    mkdir OUTPUT_DIR 2>/dev/null || { echo "Error: Could not create directory '$OUTPUT_DIR'" >&2; return 1; }
 
-    if echo "$ARCHIVE" | grep -qE '\.zip$'; then
-        if command -v unzip >/dev/null 2>&1; then
-            unzip "$ARCHIVE" -d "$OUTPUT_DIR"
-        else
-            echo "Error: 'unzip' is not installed, cannot extract ZIP archive" >&2
-            return 1
-        fi
-    elif echo "$ARCHIVE" | grep -qE '\.tar\.gz$'; then
-        if command -v tar >/dev/null 2>&1; then
-            _tar_gz -C "$OUTPUT_DIR"
-        else
-            echo "Error: 'tar' is not installed, cannot extract TAR.GZ archive" >&2
-            return 1
-        fi
-    else
-        echo "Error: Unsupported archive format. Supported formats: .zip, .tar.gz" >&2
-        return 1
-    fi
+    echo "Decompressing '$ARCHIVE' into '$OUTPUT_DIR'..."
 
-    echo "Extracted '$ARCHIVE' to '$OUTPUT_DIR'"
+    case "$ARCHIVE" in
+        *.zip)
+            command -v unzip >/dev/null || { echo "Error: 'unzip' not installed" >&2; return 1; }
+            unzip -v "$ARCHIVE" -d "$OUTPUT_DIR"
+            ;;
+        *.tar.gz|*.tgz)
+            tar --extract --gzip --verbose --file="$ARCHIVE" -C "$OUTPUT_DIR"
+            ;;
+        *.tar.bz2)
+            tar --extract --bzip2 --verbose --file="$ARCHIVE" -C "$OUTPUT_DIR"
+            ;;
+        *.tar.xz)
+            tar --extract --xz --verbose --file="$ARCHIVE" -C "$OUTPUT_DIR"
+            ;;
+        *.tar)
+            tar --extract --verbose --file="$ARCHIVE" -C "$OUTPUT_DIR"
+            ;;
+        *)
+            echo "Error: Unsupported archive format: $ARCHIVE" >&2
+            return 1
+            ;;
+    esac
+
+    echo "Extraction complete."
 }
 
 
