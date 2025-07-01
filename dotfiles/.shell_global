@@ -173,6 +173,7 @@ alias c="clear"
 alias ping8="ping 8.8.8.8"
 alias tree="tree -a"
 alias ux="chmod u+x"
+alias iftop="TERM=xterm iftop"
 
 ytdlmp3() {
     if ! command -v yt-dlp >/dev/null 2>&1; then
