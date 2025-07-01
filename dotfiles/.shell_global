@@ -278,8 +278,16 @@ decompress() {
     ARCHIVE="$1"
     [ -f "$ARCHIVE" ] || { echo "Error: '$ARCHIVE' is not a file" >&2; return 1; }
 
-    OUTPUT_DIR="${2:-.}"
-    mkdir OUTPUT_DIR 2>/dev/null || { echo "Error: Could not create directory '$OUTPUT_DIR'" >&2; return 1; }
+    if [ -n "$2" ]; then
+        OUTPUT_DIR=$2
+    else
+        OUTPUT_DIR=.
+    fi
+
+    if ! mkdir -p "$OUTPUT_DIR"; then
+        echo "Error: Failed to create or access directory: $OUTPUT_DIR" >&2
+        exit 1
+    fi
 
     echo "Decompressing '$ARCHIVE' into '$OUTPUT_DIR'..."
 
