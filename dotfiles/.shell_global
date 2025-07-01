@@ -175,6 +175,23 @@ alias tree="tree -a"
 alias ux="chmod u+x"
 alias iftop="TERM=xterm iftop"
 
+cf() {
+    if [ "$1" = "--help" ] || [ "$#" -ne 2 ]; then
+        echo "Usage: cf DIRECTORY EXTENSION"
+        return 1
+    fi
+
+    DIRECTORY=$1
+    EXTENSION=$2
+
+    if [ ! -d "$DIRECTORY" ]; then
+        echo "Error: '$DIRECTORY' is not a directory" >&2
+        return 1
+    fi
+
+    find "$DIRECTORY" -type f -name "*.$EXTENSION" | wc -l | awk '{ print $1 }'
+}
+
 ytdlmp3() {
     if ! command -v yt-dlp >/dev/null 2>&1; then
         echo "Error: 'yt-dlp' is not installed. Please install it first." >&2
