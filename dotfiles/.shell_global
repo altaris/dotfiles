@@ -189,7 +189,7 @@ cf() {
         return 1
     fi
 
-    find "$DIRECTORY" -type f -name "*.$EXTENSION" | wc -l | awk '{ print $1 }'
+    find -L "$DIRECTORY" \( -type f -o -type l \) -name "*.$EXTENSION" | wc -l
 }
 
 clean_history() {
