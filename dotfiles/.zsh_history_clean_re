@@ -1,0 +1,47 @@
+^[^[:space:]]*--help
+^\. \.
+^\.\.$
+^c$
+^cc$
+^cd -[1-9]$
+^cd [a-zA-Z0-9]$
+^cd \.\.$
+^cd Desktop.*
+^cd Downloads.*
+^ch$
+^du[[:space:]]
+^exit$
+^git clone
+^git log$
+^git pull$
+^git push$
+^git status$
+^gitc$
+^gitd$
+^gitl$
+^gitp$
+^gitP$
+^gits$
+^htop$
+^l$
+^ll$
+^make all$
+^make clean$
+^make install-force$
+^make install$
+^make$
+^man[[:space:]]
+^nvtop$
+^open
+^ps aux | grep[[:space:]]
+^rm[[:space:]]
+^sha256sum[[:space:]]
+^ssh-copy-id[[:space:]]
+^ta$
+^touch
+^uptime$
+^uv[[:space:]]
+^uv$
+^ux .*\.sh$
+^yt-dlp http
+^ytdlmp3[[:space:]]

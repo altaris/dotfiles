@@ -192,6 +192,52 @@ cf() {
     find "$DIRECTORY" -type f -name "*.$EXTENSION" | wc -l | awk '{ print $1 }'
 }
 
+clean_history() {
+    local HISTORY_FILE="$HOME/.zsh_history"
+    local REGEX_FILE="$HOME/.zsh_history_clean_re"
+    local TEMP_FILE="$HOME/.zsh_history.tmp"
+    if [ ! -f "$REGEX_FILE" ]; then
+        echo "Error: $REGEX_FILE not found."
+        return 1
+    fi
+    export REGEX_FILE_PATH="$REGEX_FILE"
+    perl -ne '
+        BEGIN {
+            if (open(my $fh, "<", $ENV{REGEX_FILE_PATH})) {
+                while (my $line = <$fh>) {
+                    chomp($line);
+                    next if $line =~ /^\s*$/ || $line =~ /^\s*#/;
+                    push @patterns, qr/$line/;
+                }
+                close($fh);
+            } else {
+                die "Could not open regex file: $!";
+            }
+        }
+
+        if (/^(.*?;)(.*)$/s) {
+            my ($prefix, $cmd) = ($1, $2);
+            $cmd =~ s/\n$//;
+            my $matched = 0;
+            foreach my $re (@patterns) {
+                if ($cmd =~ $re) { $matched = 1; last; }
+            }
+            next if $matched;
+            next if $seen{$cmd}++;
+            print $_;
+        }
+    ' "$HISTORY_FILE" > "$TEMP_FILE"
+    if [ $? -eq 0 ] && [ -s "$TEMP_FILE" ]; then
+        mv "$TEMP_FILE" "$HISTORY_FILE"
+        echo "History cleaned"
+    else
+        echo "Failed to clean history. $HISTORY_FILE unchanged"
+        [ -f "$TEMP_FILE" ] && rm "$TEMP_FILE"
+        return 1
+    fi
+}
+alias ch="clean_history"
+
 ytdlmp3() {
     if ! command -v yt-dlp >/dev/null 2>&1; then
         echo "Error: 'yt-dlp' is not installed. Please install it first." >&2
