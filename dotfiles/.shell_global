@@ -194,33 +194,43 @@ cf() {
 
 segpdf() {
     if [ $# -lt 3 ]; then
-        echo "Usage: $0 <file.pdf> <P1> <P2> [Pn... or END]"
+        echo "Usage: segpdf <file.pdf> [+ <offset>] <P1> <P2> [Pn... or END]"
         echo
         echo "Explanation:"
         echo "  Creates n-1 segments where each segment starts at Pi and ends at P(i+1)-1."
+        echo "  If '+' is used, the offset is added to all Pi values."
         echo "  If the last marker is 'END', the final segment includes the last page."
         echo
         echo "Examples:"
-        echo "  $0 doc.pdf 1 11 21       -> Creates 1-10, 11-20"
-        echo "  $0 doc.pdf 1 11 21 END   -> Creates 1-10, 11-20, 21-LastPage"
-        exit 1
+        echo "  segpdf doc.pdf 1 11 21         -> 1-10, 11-20"
+        echo "  segpdf doc.pdf + 10 1 11 21    -> 11-20, 21-30"
+        echo "  segpdf doc.pdf 1 11 END        -> 1-10, 11-LastPage"
+        return 1
     fi
 
-    command -v qpdf >/dev/null 2>&1 || { echo "Error: qpdf not installed."; exit 1; }
+    command -v qpdf >/dev/null 2>&1 || { echo "Error: qpdf not installed."; return 1; }
 
     IN="$1"
     shift
+    OFFSET=0
+
+    # Detect literal '+' for offset mode
+    if [ "$1" = "+" ]; then
+        OFFSET="$2"
+        shift 2
+    fi
+
     i=1
     total=$(($# - 1))
 
     while [ $# -gt 1 ]; do
-        START="$1"
-        NEXT="$2"
+        START=$(($1 + OFFSET))
+        NEXT_RAW="$2"
 
-        if [ "$NEXT" = "END" ]; then
+        if [ "$NEXT_RAW" = "END" ]; then
             END=$(qpdf --show-npages "$IN")
         else
-            END=$((NEXT - 1))
+            END=$((NEXT_RAW + OFFSET - 1))
         fi
 
         A=$(printf "%02d" "$i")
@@ -228,7 +238,7 @@ segpdf() {
         C=$(printf "%03d" "$END")
         OUT="seg_${A}_p${B}-p${C}.pdf"
 
-        printf "[%02s/%02d] Creating segment %s... " "$A" "$total" "$OUT"
+        printf "[%02s/%02d] Creating %s... " "$A" "$total" "$OUT"
         if qpdf "$IN" --pages . "$START-$END" -- "$OUT" >/dev/null 2>&1; then
             echo "Done."
         else
