@@ -192,6 +192,54 @@ cf() {
     find -L "$DIRECTORY" \( -type f -o -type l \) -name "*.$EXTENSION" | wc -l
 }
 
+segpdf() {
+    if [ $# -lt 3 ]; then
+        echo "Usage: $0 <file.pdf> <P1> <P2> [Pn... or END]"
+        echo
+        echo "Explanation:"
+        echo "  Creates n-1 segments where each segment starts at Pi and ends at P(i+1)-1."
+        echo "  If the last marker is 'END', the final segment includes the last page."
+        echo
+        echo "Examples:"
+        echo "  $0 doc.pdf 1 11 21       -> Creates 1-10, 11-20"
+        echo "  $0 doc.pdf 1 11 21 END   -> Creates 1-10, 11-20, 21-LastPage"
+        exit 1
+    fi
+
+    command -v qpdf >/dev/null 2>&1 || { echo "Error: qpdf not installed."; exit 1; }
+
+    IN="$1"
+    shift
+    i=1
+    total=$(($# - 1))
+
+    while [ $# -gt 1 ]; do
+        START="$1"
+        NEXT="$2"
+
+        if [ "$NEXT" = "END" ]; then
+            END=$(qpdf --show-npages "$IN")
+        else
+            END=$((NEXT - 1))
+        fi
+
+        A=$(printf "%02d" "$i")
+        B=$(printf "%03d" "$START")
+        C=$(printf "%03d" "$END")
+        OUT="seg_${A}_p${B}-p${C}.pdf"
+
+        printf "[%02s/%02d] Creating segment %s... " "$A" "$total" "$OUT"
+        if qpdf "$IN" --pages . "$START-$END" -- "$OUT" >/dev/null 2>&1; then
+            echo "Done."
+        else
+            echo "Failed."
+        fi
+
+        shift
+        i=$((i + 1))
+    done
+}
+
 clean_history() {
     local HISTORY_FILE="$HOME/.zsh_history"
     local REGEX_FILE="$HOME/.zsh_history_clean_re"
