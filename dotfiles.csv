@@ -5,7 +5,8 @@ dotfiles/.zsh_history_clean_re,~/.zsh_history_clean_re,~/.zsh_history_clean_re
 dotfiles/.shell_prompt,~/.shell_prompt,~/.shell_prompt
 dotfiles/.vimrc,~/.vimrc,~/.vimrc
 dotfiles/.Xresources,~/.Xresources,FALSE
-dotfiles/.bashrc,~/.bashrc,FALSE
+dotfiles/.bashrc,~/.bashrc,~/.bashrc
+dotfiles/.bash_profile,FALSE,~/.bash_profile
 dotfiles/.bash_logout,~/.bash_logout,FALSE
 dotfiles/.ls_colors,~/.ls_colors,FALSE
 dotfiles/.config/Code/User/keybindings.json,~/.config/Code/User/keybindings.json,FALSE
