@@ -208,7 +208,7 @@ md() {
             echo "Executing in $DIR"
             echo "=============================="
             echo
-            (cd "$DIR" && sh -c "$*")
+            (cd "$DIR" && sh -c ". ~/.shell_global && $*")
         fi
     done
 }
