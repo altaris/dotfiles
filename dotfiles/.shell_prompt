@@ -29,10 +29,8 @@ fi
 # =============================================================================
 # SH (POSIX shell), DOESN'T WORK ON MACOS BECAUSE /bin/sh IS BASH IN POSIX MODE
 # =============================================================================
-if [ -z "$BASH_VERSION" ] && [ -z "$ZSH_VERSION" ]; then
+if [ "$(basename "${0#-}")" = "sh" ] || [ -z "$BASH_VERSION" ] && [ -z "$ZSH_VERSION" ]; then
 
-# Note: POSIX sh has limited PS1 support - no command substitution
-# Using basic ANSI escape codes
 PS1="┌─[\$(whoami)@\$(hostname)]:\$PWD
 └─╼ "
 
