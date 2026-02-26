@@ -38,4 +38,3 @@ fi
 
 [ -f ~/.shell_global ] && source ~/.shell_global
 [ -f ~/.shell_prompt ] && . ~/.shell_prompt
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
