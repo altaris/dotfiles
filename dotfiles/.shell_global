@@ -192,6 +192,33 @@ cf() {
     find -L "$DIRECTORY" \( -type f -o -type l \) -name "*.$EXTENSION" | wc -l
 }
 
+mapdir() {
+    if [ "$#" -lt 1 ]; then
+        echo "Usage: mapdir COMMAND [ARGS...]" >&2
+        return 1
+    fi
+
+    for DIR in */; do
+        if [ -d "$DIR" ]; then
+            echo
+            echo "=============================="
+            echo "Executing in $DIR"
+            echo "=============================="
+            (cd "$DIR" && "$@")
+        fi
+    done
+}
+
+mapfile() {
+    if [ "$#" -lt 1 ]; then
+        echo "Usage: mapfile COMMAND [with {} as filename placeholder]" >&2
+        echo "Example: mapfile echo Processing '{}'" >&2
+        return 1
+    fi
+
+    find . -maxdepth 1 -type f -not -name '.*' | xargs -I {} "$@"
+}
+
 segpdf() {
     if [ $# -lt 3 ]; then
         echo "Usage: segpdf <file.pdf> [+ <offset>] <P1> <P2> [Pn... or END]"
