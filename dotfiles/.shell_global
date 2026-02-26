@@ -192,30 +192,51 @@ cf() {
     find -L "$DIRECTORY" \( -type f -o -type l \) -name "*.$EXTENSION" | wc -l
 }
 
-mapdir() {
+md() {
     if [ "$#" -lt 1 ]; then
-        echo "Usage: mapdir COMMAND [ARGS...]" >&2
+        echo "Usage: md COMMAND [ARGS...]" >&2
+        echo "Example: md ls -l" >&2
+        echo "Executes COMMAND [ARGS...] in each subdirectory of the current directory." >&2
         return 1
     fi
-
     for DIR in */; do
         if [ -d "$DIR" ]; then
             echo
             echo "=============================="
             echo "Executing in $DIR"
             echo "=============================="
+            echo
             (cd "$DIR" && "$@")
         fi
     done
 }
 
-mapfile() {
+mdd() {
     if [ "$#" -lt 1 ]; then
-        echo "Usage: mapfile COMMAND [with {} as filename placeholder]" >&2
-        echo "Example: mapfile echo Processing '{}'" >&2
+        echo "Usage: mdd COMMAND [ARGS...]" >&2
+        echo "Example: mdd ls -l" >&2
+        echo "Executes COMMAND [ARGS...] in each subdirectory of the current directory using 'sh -c'. Unlike md, this allows for piping." >&2
         return 1
     fi
+    for DIR in */; do
+        if [ -d "$DIR" ]; then
+            echo
+            echo "=============================="
+            echo "Executing in $DIR"
+            echo "=============================="
+            echo
+            (cd "$DIR" && sh -c "$*")
+        fi
+    done
+}
 
+mf() {
+    if [ "$#" -lt 1 ]; then
+        echo "Usage: mf COMMAND [with {} as filename placeholder]" >&2
+        echo "Example: mf echo Processing '{}'" >&2
+        echo "Executes COMMAND for each file in the current directory, replacing '{}' with the filename. If '{}' is not used, the filename is appended to the command." >&2
+        return 1
+    fi
     find . -maxdepth 1 -type f -not -name '.*' | xargs -I {} "$@"
 }
 
