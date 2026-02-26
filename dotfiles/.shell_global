@@ -195,27 +195,9 @@ cf() {
 md() {
     if [ "$#" -lt 1 ]; then
         echo "Usage: md COMMAND [ARGS...]" >&2
-        echo "Example: md ls -l" >&2
-        echo "Executes COMMAND [ARGS...] in each subdirectory of the current directory." >&2
-        return 1
-    fi
-    for DIR in */; do
-        if [ -d "$DIR" ]; then
-            echo
-            echo "=============================="
-            echo "Executing in $DIR"
-            echo "=============================="
-            echo
-            (cd "$DIR" && "$@")
-        fi
-    done
-}
-
-mdd() {
-    if [ "$#" -lt 1 ]; then
-        echo "Usage: mdd COMMAND [ARGS...]" >&2
-        echo "Example: mdd ls -l" >&2
-        echo "Executes COMMAND [ARGS...] in each subdirectory of the current directory using 'sh -c'. Unlike md, this allows for piping." >&2
+        echo "Example: md touch .gitkeep" >&2
+        echo "Example: md 'tree -d > output.txt'" >&2
+        echo "Executes COMMAND [ARGS...] in each subdirectory of the current directory using 'sh -c'. If your command uses piping, don't forget to quote it." >&2
         return 1
     fi
     for DIR in */; do
