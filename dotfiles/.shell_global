@@ -192,6 +192,7 @@ cf() {
     find -L "$DIRECTORY" \( -type f -o -type l \) -name "*.$EXTENSION" | wc -l
 }
 
+unalias md 2>/dev/null
 md() {
     if [ "$#" -lt 1 ]; then
         echo "Usage: md COMMAND [ARGS...]" >&2
