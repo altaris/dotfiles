@@ -10,6 +10,7 @@
 [ -d /opt/homebrew/share/info ] && export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
 [ -d /opt/homebrew/share/man ] && export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:"
 [ -d $HOME/bin ] && export PATH="$PATH:$HOME/bin"
+[ -d $HOME/.scripts ] && export PATH="$PATH:$HOME/.scripts"
 [ -d $HOME/.local/bin ] && export PATH="$PATH:$HOME/.local/bin"
 [ -d $HOME/.cargo/env ] && export PATH="$PATH:$HOME/.cargo/env"
 

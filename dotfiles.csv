@@ -18,3 +18,4 @@ dotfiles/.config/karabiner/assets,FALSE,~/.config/karabiner/assets
 dotfiles/.zshrc,~/.zshrc,~/.zshrc
 dotfiles/.tmux.conf,~/.tmux.conf,~/.tmux.conf
 dotfiles/.ssh/config,~/.ssh/config,~/.ssh/config
+dotfiles/.scripts/hashdir,~/.scripts/hashdir,~/.scripts/hashdir

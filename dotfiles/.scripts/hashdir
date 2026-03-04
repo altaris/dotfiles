@@ -1,0 +1,56 @@
+#!/usr/bin/env python3
+"""
+Deterministically hash a directory tree.
+
+For files: hash = H(file content) For directories: hash = H(concat of
+hash(x) for x in sorted(children))
+"""
+
+import hashlib
+from os import name
+import sys
+from pathlib import Path
+
+READ_SIZE = 65536  # 64KB
+
+
+def hash_directory(src_dir: Path, algorithm: str = "md5") -> bytes:
+    """
+    Recursively hash a directory tree using DFS.
+
+    Returns the digest (bytes) of src_dir.
+    """
+    h = hashlib.new(algorithm)
+    for child in sorted(src_dir.iterdir(), key=lambda p: p.name):
+        if child.is_file():
+            h.update(hash_file(child, algorithm))
+        elif child.is_dir():
+            h.update(hash_directory(child, algorithm))
+    return h.digest()
+
+
+def hash_file(path: Path, algorithm: str = "md5") -> bytes:
+    """Return the raw digest of a file's contents."""
+    h = hashlib.new(algorithm)
+    with path.open("rb") as fp:
+        for chunk in iter(lambda: fp.read(READ_SIZE), b""):
+            h.update(chunk)
+    return h.digest()
+
+
+if __name__ == "__main__":
+    if not 2 <= len(sys.argv) <= 3:
+        name = Path(sys.argv[0]).name
+        print(f"Usage: {name} <directory> [algorithm]", file=sys.stderr)
+        sys.exit(1)
+    try:
+        target = Path(sys.argv[1])
+        algorithm = sys.argv[2] if len(sys.argv) == 3 else "md5"
+        if algorithm not in hashlib.algorithms_guaranteed:
+            raise ValueError(f"Unknown algorithm: {algorithm}")
+        if not target.is_dir():
+            raise ValueError(f"Not a directory: {target}")
+        print(hash_directory(target, algorithm).hex())
+    except ValueError as e:
+        print(f"Error: {e}", file=sys.stderr)
+        sys.exit(1)
