@@ -36,5 +36,14 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
+[ -d /opt/homebrew/bin ] && export PATH="/opt/homebrew/bin:$PATH"
+[ -d /opt/homebrew/sbin ] && export PATH="/opt/homebrew/sbin:$PATH"
+[ -d /opt/homebrew/share/info ] && export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
+[ -d /opt/homebrew/share/man ] && export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:"
+[ -d $HOME/bin ] && export PATH="$PATH:$HOME/bin"
+[ -d $HOME/.scripts ] && export PATH="$PATH:$HOME/.scripts"
+[ -d $HOME/.local/bin ] && export PATH="$PATH:$HOME/.local/bin"
+[ -d $HOME/.cargo/env ] && export PATH="$PATH:$HOME/.cargo/env"
+
 [ -f ~/.shell_global ] && source ~/.shell_global
 [ -f ~/.shell_prompt ] && . ~/.shell_prompt
