@@ -225,17 +225,19 @@ mf() {
 
 segpdf() {
     if [ $# -lt 3 ]; then
-        echo "Usage: segpdf <file.pdf> [+ <offset>] <P1> <P2> [Pn... or END]"
+        echo "Usage: segpdf <file.pdf> [+ <offset>] <P1> <P2> [Pn... or END or -]"
         echo
         echo "Explanation:"
         echo "  Creates n-1 segments where each segment starts at Pi and ends at P(i+1)-1."
-        echo "  If '+' is used, the offset is added to all Pi values."
+        echo "  If '+' is used, the offset is added to all subsequent Pi values."
+        echo "  If '-' follows a marker, that segment is skipped."
         echo "  If the last marker is 'END', the final segment includes the last page."
         echo
         echo "Examples:"
         echo "  segpdf doc.pdf 1 11 21         -> 1-10, 11-20"
         echo "  segpdf doc.pdf + 10 1 11 21    -> 11-20, 21-30"
         echo "  segpdf doc.pdf 1 11 END        -> 1-10, 11-LastPage"
+        echo "  segpdf doc.pdf 1 11 - 21 31    -> 1-10, 21-30 (skip 11-20)"
         return 1
     fi
 
@@ -247,15 +249,12 @@ segpdf() {
     i=1
 
     while [ $# -gt 1 ]; do
-        if [ "$1" = "+" ]; then
-            OFFSET="$2"
-            shift 2
-            continue
-        fi
+        if [ "$1" = "+" ]; then OFFSET="$2"; shift 2; continue; fi
+        if [ "$1" = "-" ]; then shift; continue; fi
+        if [ "$2" = "-" ]; then shift; continue; fi
 
         START=$(($1 + OFFSET))
 
-        # If the next marker is preceded by a new offset, use that offset for the end
         if [ "$2" = "+" ]; then
             END=$(($4 + $3 - 1))
         elif [ "$2" = "END" ]; then
