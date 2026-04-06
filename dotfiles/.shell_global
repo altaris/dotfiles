@@ -244,32 +244,28 @@ segpdf() {
     IN="$1"
     shift
     OFFSET=0
-
-    # Detect literal '+' for offset mode
-    if [ "$1" = "+" ]; then
-        OFFSET="$2"
-        shift 2
-    fi
-
     i=1
-    total=$(($# - 1))
 
     while [ $# -gt 1 ]; do
-        START=$(($1 + OFFSET))
-        NEXT_RAW="$2"
-
-        if [ "$NEXT_RAW" = "END" ]; then
-            END=$(qpdf --show-npages "$IN")
-        else
-            END=$((NEXT_RAW + OFFSET - 1))
+        if [ "$1" = "+" ]; then
+            OFFSET="$2"
+            shift 2
+            continue
         fi
 
-        A=$(printf "%02d" "$i")
-        B=$(printf "%03d" "$START")
-        C=$(printf "%03d" "$END")
-        OUT="seg_${A}_p${B}-p${C}.pdf"
+        START=$(($1 + OFFSET))
 
-        printf "[%02s/%02d] Creating %s... " "$A" "$total" "$OUT"
+        # If the next marker is preceded by a new offset, use that offset for the end
+        if [ "$2" = "+" ]; then
+            END=$(($4 + $3 - 1))
+        elif [ "$2" = "END" ]; then
+            END=$(qpdf --show-npages "$IN")
+        else
+            END=$(($2 + OFFSET - 1))
+        fi
+
+        OUT="seg_$(printf "%02d" $i)_p$(printf "%03d" $START)-p$(printf "%03d" $END).pdf"
+        printf "[%02d] Creating %s... " "$i" "$OUT"
         if qpdf "$IN" --pages . "$START-$END" -- "$OUT" >/dev/null 2>&1; then
             echo "Done."
         else
