@@ -170,10 +170,8 @@ install_kernel() {
 
 alias C="clear && cd ~"
 alias c="clear"
-alias ping8="ping 8.8.8.8"
-alias tree="tree -a"
+alias p8="ping 8.8.8.8"
 alias ux="chmod u+x"
-alias iftop="TERM=xterm iftop"
 
 cf() {
     if [ "$1" = "--help" ] || [ "$#" -ne 2 ]; then
@@ -192,8 +190,7 @@ cf() {
     find -L "$DIRECTORY" \( -type f -o -type l \) -name "*.$EXTENSION" | wc -l
 }
 
-unalias md 2>/dev/null
-md() {
+map_dir() {
     if [ "$#" -lt 1 ]; then
         echo "Usage: md COMMAND [ARGS...]" >&2
         echo "Example: md touch .gitkeep" >&2
@@ -212,8 +209,10 @@ md() {
         fi
     done
 }
+unalias md 2>/dev/null
+alias md="map_dir"
 
-mf() {
+map_file() {
     if [ "$#" -lt 1 ]; then
         echo "Usage: mf COMMAND [with {} as filename placeholder]" >&2
         echo "Example: mf echo Processing '{}'" >&2
@@ -222,6 +221,9 @@ mf() {
     fi
     find . -maxdepth 1 -type f -not -name '.*' | xargs -I {} "$@"
 }
+unalias mf 2>/dev/null
+alias mf="map_file"
+
 
 segpdf() {
     if [ $# -lt 3 ]; then
@@ -359,7 +361,6 @@ ytdlmp3() {
     echo "Download complete!"
 }
 
-
 man () {
   env \
     LESS_TERMCAP_mb=$(printf "\e[1;31m") \
@@ -464,9 +465,7 @@ decompress() {
     echo "Extraction complete."
 }
 
-
-# removes common trash files
-rmtmp() {
+rmtmp() { # removes common trash files
     EXTENSIONS="*.*.gnuplot *.*.table *.aux *.bbl *.blg *.class *.fdb_latexmk *.fls *.idx *.ilg *.ind *.java~ *.log *.nav *.o *.out *.snm *.synctex.gz *.synctex(busy) *.toc *.xdv"
     if [ "$(uname)" != "Darwin" ]; then
         EXTENSIONS="$EXTENSIONS *.DS_Store .Trashes ._*"
