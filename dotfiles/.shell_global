@@ -224,6 +224,25 @@ map_file() {
 unalias mf 2>/dev/null
 alias mf="map_file"
 
+ff() {
+    if [ "$#" -lt 1 ]; then
+        echo "Usage: ff FILENAME" >&2
+        echo "Example: ff README.md" >&2
+        echo "Searches for FILENAME in the current directory and all subdirectories, excluding hidden files and directories. (i.e. starting with a dot)" >&2
+        return 1
+    fi
+    find . -type f -name "$1" -not -name '.*' -print
+}
+
+fd() {
+    if [ "$#" -lt 1 ]; then
+        echo "Usage: fd DIRNAME" >&2
+        echo "Example: fd old" >&2
+        echo "Searches for DIRNAME in the current directory and all subdirectories, excluding hidden  directories. (i.e. starting with a dot)" >&2
+        return 1
+    fi
+    find . -type d -name "$1" -not -name '.*' -print
+}
 
 segpdf() {
     if [ $# -lt 3 ]; then
